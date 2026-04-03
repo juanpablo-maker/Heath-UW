@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --background-secondary: #fafafa;
+  --card: #ffffff;
+  --primary: #0f172a;
+  --secondary: #6b7280;
+  --accent: #f97316;
+  --intelligence: #7c3aed;
+  --positive: #10b981;
+  --risk: #ef4444;
+  --border: #e5e7eb;
+}
+
+body {
+  @apply antialiased bg-background text-primary;
+}
+
+/* Landing: rejilla (máscara radial) */
+.landing-hero-grid {
+  background-image:
+    linear-gradient(to right, rgb(229 231 235 / 0.55) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(229 231 235 / 0.55) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 40%, black 20%, transparent 72%);
+  -webkit-mask-image: radial-gradient(
+    ellipse 75% 65% at 50% 40%,
+    black 20%,
+    transparent 72%
+  );
+}
+
+@keyframes skeletonShimmer {
+  0% {
+    transform: translateX(-60%);
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(60%);
+    opacity: 0.45;
+  }
+}
+
+/* Skeletons premium (shimmer suave, sin aspecto "template") */
+.skeleton {
+  background-color: rgba(229, 231, 235, 0.7);
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+}
+
+.skeleton-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.65) 50%,
+    transparent 100%
+  );
+  animation: skeletonShimmer 1.15s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer::after {
+    animation: none;
+  }
+}
