@@ -72,7 +72,7 @@ export function Hero() {
 
             <div className="relative pt-0 motion-reduce:animate-none lg:animate-landing-float">
               <div className="absolute -right-1 -top-6 z-10 rounded-lg border border-border bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-intelligence shadow-soft">
-                Motor de Decisión
+                {dict.hero.mock.tag}
               </div>
               <MockTradingDesk />
             </div>
@@ -84,33 +84,34 @@ export function Hero() {
 }
 
 function MockTradingDesk() {
+  const { dict } = useI18n();
   const submissions = [
     {
       broker: "Broker A",
-      deal: "Prop. marítimo",
-      status: "Nueva",
-      riskLabel: "Bajo",
+      deal: dict.hero.mock.rows[0]?.deal ?? "",
+      status: dict.hero.mock.rows[0]?.status ?? "",
+      riskLabel: dict.hero.mock.rows[0]?.riskLabel ?? "",
       riskTone: "positive" as const,
     },
     {
       broker: "Broker B",
-      deal: "Renovación aviación",
-      status: "En revisión",
-      riskLabel: "Alto",
+      deal: dict.hero.mock.rows[1]?.deal ?? "",
+      status: dict.hero.mock.rows[1]?.status ?? "",
+      riskLabel: dict.hero.mock.rows[1]?.riskLabel ?? "",
       riskTone: "risk" as const,
     },
     {
       broker: "Broker C",
-      deal: "Renovación propiedad",
-      status: "Decisión",
-      riskLabel: "Bajo",
+      deal: dict.hero.mock.rows[2]?.deal ?? "",
+      status: dict.hero.mock.rows[2]?.status ?? "",
+      riskLabel: dict.hero.mock.rows[2]?.riskLabel ?? "",
       riskTone: "positive" as const,
     },
     {
       broker: "Broker D",
-      deal: "Paquete especializado",
-      status: "En revisión",
-      riskLabel: "Alto",
+      deal: dict.hero.mock.rows[3]?.deal ?? "",
+      status: dict.hero.mock.rows[3]?.status ?? "",
+      riskLabel: dict.hero.mock.rows[3]?.riskLabel ?? "",
       riskTone: "risk" as const,
     },
   ];
@@ -119,23 +120,23 @@ function MockTradingDesk() {
     <div className="rounded-2xl border border-border bg-card/95 p-2.5 shadow-card-lift ring-1 ring-primary/[0.04] backdrop-blur-sm transition-shadow duration-300 hover:shadow-card-lift md:p-3">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-sm font-semibold text-primary">Underwriting</p>
+          <p className="text-sm font-semibold text-primary">{dict.hero.mock.title}</p>
           <p className="mt-1 text-xs text-secondary">
-            Vista tipo mesa de trading
+            {dict.hero.mock.subtitle}
           </p>
         </div>
 
         <span className="shrink-0 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
-          En Tiempo Real
+          {dict.hero.mock.realtime}
         </span>
       </div>
 
       <div className="mt-4 overflow-hidden rounded-xl border border-border bg-background/50">
         <div className="grid grid-cols-[1fr_1.4fr_0.9fr_0.7fr] gap-0 border-b border-border bg-muted/40 px-3 py-2.5 text-[11px] font-bold uppercase tracking-wide text-secondary">
-          <span>Solicitud</span>
-          <span>Operación</span>
-          <span>Estado</span>
-          <span>Riesgo</span>
+          <span>{dict.hero.mock.columns.submission}</span>
+          <span>{dict.hero.mock.columns.operation}</span>
+          <span>{dict.hero.mock.columns.status}</span>
+          <span>{dict.hero.mock.columns.risk}</span>
         </div>
 
         <div className="divide-y divide-border bg-card">
@@ -175,11 +176,11 @@ function MockTradingDesk() {
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-gradient-to-r from-muted/50 to-backgroundSecondary/80 px-3 py-2.5">
         <div className="text-xs font-medium text-secondary">
-          Participación consciente de capacidad
+          {dict.hero.mock.capacityLabel}
         </div>
         <div className="flex items-center gap-2 text-xs font-bold">
           <span className="h-1.5 w-1.5 rounded-full bg-positive" aria-hidden />
-          <span className="text-primary">82% disponible</span>
+          <span className="text-primary">{dict.hero.mock.capacityValue}</span>
         </div>
       </div>
     </div>

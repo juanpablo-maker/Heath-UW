@@ -1,4 +1,6 @@
 import React from "react";
+import { Container } from "./Container";
+import { Section } from "./Section";
 
 interface SectionContainerProps {
   children: React.ReactNode;
@@ -7,16 +9,17 @@ interface SectionContainerProps {
   as?: "section" | "div";
 }
 
+/**
+ * Full-width section with vertical rhythm + centered container (legacy name, same as Section + Container).
+ */
 export function SectionContainer({
   children,
   className = "",
-  as: Tag = "section",
+  as = "section",
 }: SectionContainerProps) {
   return (
-    <Tag
-      className={`mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-24 ${className}`.trim()}
-    >
-      {children}
-    </Tag>
+    <Section as={as} className={className}>
+      <Container>{children}</Container>
+    </Section>
   );
 }

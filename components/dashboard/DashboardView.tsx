@@ -9,11 +9,13 @@ import { SubmissionsTable } from "@/components/dashboard/SubmissionsTable";
 import { AlertsPanel } from "@/components/dashboard/AlertsPanel";
 import { SlaPanel } from "@/components/dashboard/SlaPanel";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { Button } from "@/components/ui/Button";
 import type { DashboardData } from "@/lib/dashboard/fetch-dashboard";
 
 export function DashboardView({ data }: { data: DashboardData }) {
   const { dict } = useI18n();
   const d = dict.dashboard;
+  const { common } = dict;
   const { queryErrors } = data;
 
   const kpisDisplay = useMemo(
@@ -37,7 +39,10 @@ export function DashboardView({ data }: { data: DashboardData }) {
                 {d.subtitle}
               </p>
             </div>
-            <div className="shrink-0 pt-1">
+            <div className="flex shrink-0 flex-wrap items-center justify-end gap-3 pt-1">
+              <Button href="/" variant="secondary">
+                {common.backToHome}
+              </Button>
               <LanguageSwitcher />
             </div>
           </div>

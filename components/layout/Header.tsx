@@ -27,14 +27,14 @@ export function Header() {
     return null;
   }
 
-  const simpleLinks = [dict.nav.solutions, dict.nav.company] as const;
+  const simpleLinks = [dict.nav.company] as const;
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/50 bg-background/55 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-background/45">
       <div className="mx-auto flex h-[3.75rem] max-w-6xl items-center justify-between gap-6 px-6 md:h-16 md:px-8">
         <Link
           href="/"
-          className="shrink-0 text-lg font-semibold tracking-tight text-primary md:text-xl"
+          className="shrink-0 text-xl font-semibold tracking-tight text-primary md:text-2xl"
           onClick={() => setOpen(false)}
         >
           Heath

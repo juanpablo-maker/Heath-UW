@@ -11,6 +11,7 @@ export const es = {
     platform: "Plataforma",
     platformMenuAria: "Plataforma",
     platformItems: [
+      { href: "/soluciones", label: "Soluciones" },
       { href: "/sectores", label: "Sectores" },
       { href: "/mesa-de-trabajo", label: "Panel de Underwriting" },
     ],
@@ -150,6 +151,26 @@ export const es = {
       "Centraliza oportunidades, evalúa riesgos y toma decisiones con contexto de portafolio en segundos.",
     primaryCta: "Ver cómo funciona",
     secondaryCta: "Solicitar demo",
+    mock: {
+      tag: "Motor de Decisión",
+      title: "Underwriting",
+      subtitle: "Vista tipo mesa de trading",
+      realtime: "En tiempo real",
+      columns: {
+        submission: "Solicitud",
+        operation: "Operación",
+        status: "Estado",
+        risk: "Riesgo",
+      },
+      rows: [
+        { deal: "Prop. marítimo", status: "Nueva", riskLabel: "Bajo" },
+        { deal: "Renovación aviación", status: "En revisión", riskLabel: "Alto" },
+        { deal: "Renovación propiedad", status: "Decisión", riskLabel: "Bajo" },
+        { deal: "Paquete especializado", status: "En revisión", riskLabel: "Alto" },
+      ],
+      capacityLabel: "Participación consciente de capacidad",
+      capacityValue: "82% disponible",
+    },
   },
   footer: {
     description:
@@ -288,9 +309,74 @@ export const es = {
     sectores: {
       title: "Sectores",
       subtitle: "Especialidad y profundidad por ramo, con flujos adaptados a cada mercado.",
+      heroKicker: "Líneas especializadas",
       intro:
-        "Heath está pensado para aseguradores y reaseguradores de líneas especializadas. Esta página es un marcador de posición de marketing: aquí podrás detallar aviación, marítimo, propiedad, construcción, PVT y otros sectores.",
-      list: ["Aviación", "Marítimo", "Construcción", "Propiedad", "Violencia política y terrorismo", "Modelo enterprise multi-ramo"],
+        "Heath está pensado para aseguradores y reaseguradores en líneas especializadas. Explorá cómo el intake estructurado, decisiones consistentes y visibilidad de portafolio se aplican a cada industria—con una base sólida que podés extender a playbooks específicos por ramo.",
+      industries: [
+        {
+          slug: "aviation",
+          title: "Aviación",
+          description:
+            "Casco, responsabilidad y exposiciones aeroportuarias con submissions ágiles y control estricto de acumulación.",
+        },
+        {
+          slug: "marine",
+          title: "Marítimo",
+          description:
+            "Flujos de carga, casco y responsabilidad con contexto de viaje, límites y estacionalidad.",
+        },
+        {
+          slug: "construction",
+          title: "Construcción",
+          description:
+            "Programas tipo CAR/EAR con riesgo por hitos, contratistas y concentración por obra.",
+        },
+        {
+          slug: "property",
+          title: "Propiedad",
+          description:
+            "Portafolios con exposición a CAT, acumulación, contexto de reaseguro y priorización de renovaciones.",
+        },
+        {
+          slug: "political-violence-terrorism",
+          title: "Violencia política y terrorismo",
+          description:
+            "Ramos de perils donde geografía, eventos de seguridad y wording condicionan el triage.",
+        },
+        {
+          slug: "enterprise-multi-line",
+          title: "Modelo enterprise multi-ramo",
+          description:
+            "Mesa unificada para organizaciones complejas que coordinan múltiples ramos, entidades y capacidad.",
+        },
+      ],
+      feature: {
+        kicker: "Por qué importa el ramo",
+        title: "Flujos alineados a exposición, estructura y estacionalidad",
+        description:
+          "Cada línea tiene distinta calidad de datos, cadencia de renovación y perfiles de acumulación. Heath mantiene un solo modelo operativo y adapta reglas de triage, scoring y monitoreo a la realidad de cada mercado.",
+        bullets: [
+          "Triage consciente del ramo sin perder un estándar único de intake",
+          "Contexto de portafolio embebido en el camino de decisión",
+          "Tableros operativos alineados a cómo los equipos gestionan el libro",
+        ],
+      },
+      cta: {
+        kicker: "Siguiente paso",
+        title: "Conocé Heath en tus",
+        titleAccent: "líneas de negocio",
+        description: "Pasá de solicitudes fragmentadas a inteligencia de suscripción estructurada.",
+        primary: "Solicitar demo",
+        secondary: "Panel de Underwriting",
+      },
+      industryDetail: {
+        notFoundTitle: "Sector no encontrado",
+        notFoundBody: "Esta página no está disponible.",
+        upcomingTitle: "Profundización próximamente",
+        upcomingBody:
+          "Estamos preparando flujos específicos por ramo, benchmarks y ejemplos para esta industria.",
+        backLink: "Volver a sectores",
+      },
     },
     recursos: {
       title: "Recursos",

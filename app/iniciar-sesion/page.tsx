@@ -9,7 +9,11 @@ export default function IniciarSesionPage() {
   const { dict, t } = useI18n();
 
   return (
-    <MarketingPageLayout title={dict.pages.login.title} subtitle={dict.pages.login.subtitle}>
+    <MarketingPageLayout
+      title={dict.pages.login.title}
+      subtitle={dict.pages.login.subtitle}
+      showHeader={false}
+    >
       <Suspense
         fallback={
           <div className="py-4 text-center text-secondary">{t("common.loading")}</div>

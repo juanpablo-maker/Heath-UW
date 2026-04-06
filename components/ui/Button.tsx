@@ -1,31 +1,59 @@
-import React from "react";
+import Link from "next/link";
+import type { ButtonHTMLAttributes, AnchorHTMLAttributes } from "react";
+import { cn } from "@/lib/cn";
+import { components } from "@/styles/design-system";
 
 type ButtonVariant = "primary" | "secondary";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonSize = "default" | "lg";
+
+type SharedProps = {
   variant?: ButtonVariant;
+  size?: ButtonSize;
   children: React.ReactNode;
-}
+  className?: string;
+};
+
+type ButtonAsButton = SharedProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className" | "children"> & {
+    href?: undefined;
+  };
+
+type ButtonAsLink = SharedProps &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "className" | "children"> & {
+    href: string;
+  };
+
+export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 export function Button({
   variant = "primary",
+  size = "default",
   className = "",
   children,
   ...props
 }: ButtonProps) {
-  const base =
-    "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background disabled:opacity-50";
-  const variants = {
-    primary:
-      "bg-accent text-white shadow-sm hover:bg-orange-700 active:scale-[0.98]",
-    secondary:
-      "border border-border bg-white text-primary hover:border-secondary hover:bg-muted active:scale-[0.98]",
-  };
+  const sizeClasses =
+    size === "lg" ? components.button.sizeLg : components.button.sizeDefault;
+  const variantClasses =
+    variant === "primary"
+      ? cn(components.button.primary, size === "lg" && components.button.primaryLg)
+      : cn(components.button.secondary, size === "lg" && components.button.secondaryLg);
 
-  const combinedClassName = `${base} ${variants[variant]} ${className}`.trim();
+  const styles = cn(components.button.base, sizeClasses, variantClasses, className);
 
+  if ("href" in props && props.href) {
+    const { href, ...rest } = props;
+    return (
+      <Link href={href} className={styles} {...rest}>
+        {children}
+      </Link>
+    );
+  }
+
+  const buttonProps = props as ButtonAsButton;
   return (
-    <button type="button" className={combinedClassName} {...props}>
+    <button type="button" className={styles} {...buttonProps}>
       {children}
     </button>
   );

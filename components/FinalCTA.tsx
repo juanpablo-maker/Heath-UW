@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { Button } from "@/components/ui/Button";
+import { Heading } from "@/components/ui/Heading";
 import { useI18n } from "@/components/providers/LanguageProvider";
 
 export function FinalCTA() {
@@ -29,26 +30,20 @@ export function FinalCTA() {
         <p className="text-xs font-bold uppercase tracking-[0.22em] text-intelligence">
           {dict.landing.finalCta.kicker}
         </p>
-        <h2 className="mt-4 text-3xl font-bold tracking-tight text-primary md:text-4xl lg:text-5xl lg:leading-[1.1]">
+        <Heading as="h2" variant="h2" className="mt-4 lg:leading-[1.1]">
           {dict.landing.finalCta.title}{" "}
           <span className="text-accent">{dict.landing.finalCta.titleAccent}</span>
-        </h2>
+        </Heading>
         <p className="mt-6 text-lg text-secondary md:text-xl">
           {dict.landing.finalCta.description}
         </p>
         <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
-          <Link
-            href="/reservar-demo"
-            className="inline-flex min-w-[220px] items-center justify-center rounded-full bg-accent px-10 py-4 text-sm font-bold text-white shadow-accent-glow transition-all hover:brightness-105 active:scale-[0.98]"
-          >
+          <Button href="/reservar-demo" variant="primary" size="lg">
             {dict.landing.finalCta.primary}
-          </Link>
-          <Link
-            href="/mesa-de-trabajo"
-            className="inline-flex min-w-[220px] items-center justify-center rounded-full border-2 border-border bg-white px-10 py-4 text-sm font-bold text-primary shadow-soft transition-all hover:border-intelligence/30 hover:shadow-card"
-          >
+          </Button>
+          <Button href="/mesa-de-trabajo" variant="secondary" size="lg">
             {dict.landing.finalCta.secondary}
-          </Link>
+          </Button>
         </div>
       </div>
     </section>

@@ -11,6 +11,7 @@ export const en = {
     platform: "Platform",
     platformMenuAria: "Platform",
     platformItems: [
+      { href: "/soluciones", label: "Solutions" },
       { href: "/sectores", label: "Industries" },
       { href: "/mesa-de-trabajo", label: "Underwriting Desk" },
     ],
@@ -150,6 +151,26 @@ export const en = {
       "Centralize opportunities, assess risk, and make portfolio-aware decisions in seconds.",
     primaryCta: "See how it works",
     secondaryCta: "Request demo",
+    mock: {
+      tag: "Decision Engine",
+      title: "Underwriting",
+      subtitle: "Trading-desk view",
+      realtime: "Real time",
+      columns: {
+        submission: "Submission",
+        operation: "Operation",
+        status: "Status",
+        risk: "Risk",
+      },
+      rows: [
+        { deal: "Marine property", status: "New", riskLabel: "Low" },
+        { deal: "Aviation renewal", status: "In review", riskLabel: "High" },
+        { deal: "Property renewal", status: "Decision", riskLabel: "Low" },
+        { deal: "Specialty package", status: "In review", riskLabel: "High" },
+      ],
+      capacityLabel: "Capacity-aware participation",
+      capacityValue: "82% available",
+    },
   },
   footer: {
     description:
@@ -288,9 +309,74 @@ export const en = {
     sectores: {
       title: "Industries",
       subtitle: "Deep underwriting expertise by line, with workflows tailored to each market.",
+      heroKicker: "Specialty lines",
       intro:
-        "Heath is designed for insurers and reinsurers in specialty lines. This page is a marketing placeholder where aviation, marine, property, construction, PVT, and other sectors can be detailed.",
-      list: ["Aviation", "Marine", "Construction", "Property", "Political violence and terrorism", "Multi-line enterprise model"],
+        "Heath is built for insurers and reinsurers across specialty lines. Explore how structured intake, consistent decisions, and portfolio visibility apply to each industry—starting from a strong foundation you can extend into line-specific playbooks.",
+      industries: [
+        {
+          slug: "aviation",
+          title: "Aviation",
+          description:
+            "Hull, liability, and airport exposures with fast-moving submissions and strict accumulation controls.",
+        },
+        {
+          slug: "marine",
+          title: "Marine",
+          description:
+            "Cargo, hull, and liability workflows with voyage context, limits, and seasonal volume patterns.",
+        },
+        {
+          slug: "construction",
+          title: "Construction",
+          description:
+            "CAR/EAR-style programs with milestone-driven risk, contractors, and project concentration.",
+        },
+        {
+          slug: "property",
+          title: "Property",
+          description:
+            "CAT-exposed portfolios with accumulation, reinsurance context, and renewal prioritization.",
+        },
+        {
+          slug: "political-violence-terrorism",
+          title: "Political violence and terrorism",
+          description:
+            "Specialty peril lines where geography, security events, and wording nuance drive triage.",
+        },
+        {
+          slug: "enterprise-multi-line",
+          title: "Multi-line enterprise model",
+          description:
+            "Unified desk for complex organizations coordinating multiple lines, entities, and capacity.",
+        },
+      ],
+      feature: {
+        kicker: "Why industries matter",
+        title: "Workflows tuned to exposure, structure, and seasonality",
+        description:
+          "Each line has different data quality, renewal cadence, and accumulation profiles. Heath keeps one operating model while adapting triage rules, scoring context, and monitoring to the realities of each market.",
+        bullets: [
+          "Line-aware triage without losing a single intake standard",
+          "Portfolio context embedded in the decision path",
+          "Operational dashboards that match how underwriting teams actually run the book",
+        ],
+      },
+      cta: {
+        kicker: "Next step",
+        title: "See Heath on your",
+        titleAccent: "lines of business",
+        description: "Move from fragmented submissions to structured underwriting intelligence.",
+        primary: "Request demo",
+        secondary: "Underwriting Desk",
+      },
+      industryDetail: {
+        notFoundTitle: "Industry not found",
+        notFoundBody: "This page is not available.",
+        upcomingTitle: "Deep dive coming soon",
+        upcomingBody:
+          "We are preparing line-specific workflows, benchmarks, and examples for this industry.",
+        backLink: "Back to industries",
+      },
     },
     recursos: {
       title: "Resources",

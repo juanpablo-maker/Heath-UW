@@ -6,7 +6,6 @@ import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { ProcessSteps } from "@/components/ProcessSteps";
-import { SocialProof } from "@/components/SocialProof";
 import { useI18n } from "@/components/providers/LanguageProvider";
 import { FadeInSection } from "@/components/ui/FadeInSection";
 
@@ -34,9 +33,6 @@ export default function Home() {
       ))}
       <FadeInSection>
         <ProcessSteps />
-      </FadeInSection>
-      <FadeInSection>
-        <SocialProof />
       </FadeInSection>
       <FadeInSection>
         <FinalCTA />

@@ -11,7 +11,10 @@ export function Footer() {
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
-            <Link href="/" className="text-lg font-semibold text-primary">
+            <Link
+              href="/"
+              className="text-xl font-semibold tracking-tight text-primary md:text-2xl"
+            >
               Heath
             </Link>
             <p className="mt-2 text-sm text-secondary">
@@ -23,6 +26,12 @@ export function Footer() {
             >
               {dict.footer.contact}
             </Link>
+            <a
+              href="mailto:sales@heathuw.com"
+              className="mt-2 block text-sm text-secondary transition-colors hover:text-primary"
+            >
+              sales@heathuw.com
+            </a>
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-3 md:justify-end">
             {(

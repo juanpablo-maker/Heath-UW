@@ -3,6 +3,8 @@
 import { useMemo, useState, type FormEvent } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
+import { Heading } from "@/components/ui/Heading";
+import { Text } from "@/components/ui/Text";
 import { useI18n } from "@/components/providers/LanguageProvider";
 import { createMockSession } from "@/lib/mockAuth";
 
@@ -70,13 +72,11 @@ export function LoginForm() {
       className="mx-auto max-w-md space-y-6 text-left"
       onSubmit={onSubmit}
     >
-      <div className="space-y-2 text-center">
-        <h2 className="text-2xl font-bold tracking-tight text-primary">
+      <div className="space-y-3 text-center">
+        <Heading as="h1" variant="h1">
           {dict.forms.login.title}
-        </h2>
-        <p className="text-secondary">
-          {dict.forms.login.subtitle}
-        </p>
+        </Heading>
+        <Text className="md:text-lg">{dict.forms.login.subtitle}</Text>
       </div>
 
       <div className="space-y-4">
