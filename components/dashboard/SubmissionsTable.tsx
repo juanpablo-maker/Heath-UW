@@ -9,8 +9,11 @@ import { DecisionBadge, ReplySentBadge } from "@/components/dashboard/badges";
 
 export function SubmissionsTable({
   rows,
+  subtitle: subtitleOverride,
 }: {
   rows: DashboardSubmissionRow[];
+  /** When set, replaces the default submissions table description (e.g. filtered overview). */
+  subtitle?: string;
 }) {
   const { locale, dict } = useI18n();
   const s = dict.dashboard.submissions;
@@ -49,7 +52,9 @@ export function SubmissionsTable({
     <div className="overflow-hidden rounded-xl border border-border bg-card shadow-soft">
       <div className="border-b border-border px-5 py-4">
         <h2 className="text-sm font-semibold text-primary">{s.title}</h2>
-        <p className="mt-0.5 text-xs text-secondary">{s.subtitle}</p>
+        <p className="mt-0.5 text-xs text-secondary">
+          {subtitleOverride ?? s.subtitle}
+        </p>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full min-w-[1100px] border-collapse text-left text-sm">

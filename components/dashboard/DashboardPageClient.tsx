@@ -4,6 +4,7 @@ import { useI18n } from "@/components/providers/LanguageProvider";
 import type { DashboardData } from "@/lib/dashboard/fetch-dashboard";
 import { DashboardView } from "@/components/dashboard/DashboardView";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import type { DashboardViewMode } from "@/lib/dashboard-view-mode";
 
 export type DashboardFetchResult =
   | { ok: true; data: DashboardData }
@@ -12,8 +13,10 @@ export type DashboardFetchResult =
 
 export function DashboardPageClient({
   result,
+  initialView = "overview",
 }: {
   result: DashboardFetchResult;
+  initialView?: DashboardViewMode;
 }) {
   const { dict } = useI18n();
   const d = dict.dashboard;
@@ -52,5 +55,5 @@ export function DashboardPageClient({
     );
   }
 
-  return <DashboardView data={result.data} />;
+  return <DashboardView data={result.data} initialView={initialView} />;
 }

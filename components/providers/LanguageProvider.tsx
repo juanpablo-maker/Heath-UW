@@ -24,6 +24,14 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (stored && isLocale(stored)) {
       setLocaleState(stored);
+      return;
+    }
+    const match = document.cookie.match(
+      new RegExp(`(?:^|;\\s*)${LOCALE_COOKIE_NAME}=([^;]*)`)
+    );
+    const raw = match?.[1] ? decodeURIComponent(match[1].trim()) : "";
+    if (raw && isLocale(raw)) {
+      setLocaleState(raw);
     }
   }, []);
 

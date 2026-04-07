@@ -1,4 +1,8 @@
 export { Button, type ButtonProps } from "./Button";
+export {
+  SegmentedControl,
+  type SegmentedControlOption,
+} from "./SegmentedControl";
 export { Card } from "./Card";
 export { Container } from "./Container";
 export { FadeInSection } from "./FadeInSection";
