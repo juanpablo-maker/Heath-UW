@@ -19,7 +19,7 @@ export const en = {
     company: { href: "/empresa", label: "Company" },
     signIn: "Sign in",
     dashboard: "Dashboard",
-    cta: "Enter dashboard",
+    cta: "Go to Dashboard",
     footerLinks: [
       { href: "/sectores", label: "Industries" },
       { href: "/mesa-de-trabajo", label: "Underwriting Desk" },
@@ -242,7 +242,7 @@ export const en = {
     description:
       "Centralize opportunities, assess risk, and make portfolio-aware decisions in seconds.",
     primaryCta: "See how it works",
-    secondaryCta: "Enter dashboard",
+    secondaryCta: "Go to Dashboard",
     mock: {
       tag: "Decision Engine",
       title: "Underwriting",
@@ -293,7 +293,7 @@ export const en = {
       emailPlaceholder: "name@company.com",
       password: "Password",
       passwordPlaceholder: "••••••••",
-      submit: "Enter dashboard",
+      submit: "Go to Dashboard",
       submitting: "Signing in...",
       hint: "Use your credentials to continue.",
       errors: {
@@ -383,7 +383,7 @@ export const en = {
       title: "Start underwriting at",
       titleAccent: "market speed",
       description: "Move from fragmented submissions to structured underwriting intelligence.",
-      primary: "Enter dashboard",
+      primary: "Go to Dashboard",
       secondary: "Underwriting Desk",
     },
   },
@@ -459,7 +459,7 @@ export const en = {
         title: "See Heath on your",
         titleAccent: "lines of business",
         description: "Move from fragmented submissions to structured underwriting intelligence.",
-        primary: "Enter dashboard",
+        primary: "Go to Dashboard",
         secondary: "Underwriting Desk",
       },
       industryDetail: {
