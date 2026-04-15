@@ -3,7 +3,7 @@
  */
 export const ROUTES = {
   home: "/",
-  demo: "/reservar-demo",
+  demo: "/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard",
   desk: "/mesa-de-trabajo",
   industries: {
     /** Current industries listing (ES path; EN nav label is still "Industries") */

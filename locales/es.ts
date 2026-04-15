@@ -19,7 +19,7 @@ export const es = {
     company: { href: "/empresa", label: "Empresa" },
     signIn: "Iniciar sesión",
     dashboard: "Dashboard",
-    cta: "Solicitar demo",
+    cta: "Ingresá al dashboard",
     footerLinks: [
       { href: "/sectores", label: "Sectores" },
       { href: "/mesa-de-trabajo", label: "Panel de Underwriting" },
@@ -244,7 +244,7 @@ export const es = {
     description:
       "Centraliza oportunidades, evalúa riesgos y toma decisiones con contexto de portafolio en segundos.",
     primaryCta: "Ver cómo funciona",
-    secondaryCta: "Solicitar demo",
+    secondaryCta: "Ingresá al dashboard",
     mock: {
       tag: "Motor de Decisión",
       title: "Underwriting",
@@ -297,10 +297,11 @@ export const es = {
       passwordPlaceholder: "••••••••",
       submit: "Ir al dashboard",
       submitting: "Ingresando...",
-      hint: "Demo: correo demo@heath.ai y contraseña demo",
+      hint: "Usá tus credenciales para continuar.",
       errors: {
         email: "Ingresá un correo válido.",
         password: "Ingresá tu contraseña.",
+        invalidCredentials: "Credenciales incorrectas.",
       },
     },
   },
@@ -384,7 +385,7 @@ export const es = {
       title: "Empezá a suscribir con",
       titleAccent: "velocidad de mercado",
       description: "Pasá de solicitudes fragmentadas a inteligencia de suscripción estructurada.",
-      primary: "Solicitar demo",
+      primary: "Ingresá al dashboard",
       secondary: "Panel de Underwriting",
     },
   },
@@ -460,7 +461,7 @@ export const es = {
         title: "Conocé Heath en tus",
         titleAccent: "líneas de negocio",
         description: "Pasá de solicitudes fragmentadas a inteligencia de suscripción estructurada.",
-        primary: "Solicitar demo",
+        primary: "Ingresá al dashboard",
         secondary: "Panel de Underwriting",
       },
       industryDetail: {

@@ -16,7 +16,7 @@ import {
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { Button } from "@/components/ui/Button";
 import { SegmentedControl } from "@/components/ui/SegmentedControl";
-import { DashboardOperationsPlaceholder } from "@/components/dashboard/DashboardOperationsPlaceholder";
+import { UnderwritingWorkbench } from "@/components/dashboard/UnderwritingWorkbench";
 import {
   aggregateBrokerDistribution,
   aggregateDeclineReasons,
@@ -171,7 +171,7 @@ function DashboardViewInner({
     view === "operations" ? d.views.operationsSubtitle : d.views.overviewSubtitle;
 
   return (
-    <div className="min-h-screen bg-backgroundSecondary/70 bg-[radial-gradient(ellipse_100%_60%_at_50%_-10%,rgba(249,115,22,0.045),transparent_50%)]">
+    <div className="min-h-screen bg-[#F7F2EC]">
       <div className="mx-auto max-w-[1400px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <header className="mb-6 border-b border-border/60 pb-5">
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-secondary/75">
@@ -291,7 +291,7 @@ function DashboardViewInner({
             </section>
           </>
         ) : (
-          <DashboardOperationsPlaceholder />
+          <UnderwritingWorkbench sourceSubmissions={data.submissions} />
         )}
       </div>
     </div>

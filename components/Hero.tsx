@@ -52,7 +52,7 @@ export function Hero() {
                 {dict.hero.primaryCta}
               </Link>
               <Link
-                href="/reservar-demo"
+                href="/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard"
                 className="inline-flex items-center justify-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white shadow-soft transition-all hover:bg-orange-700 active:scale-[0.98]"
               >
                 {dict.hero.secondaryCta}

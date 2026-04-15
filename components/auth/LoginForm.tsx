@@ -8,6 +8,9 @@ import { Text } from "@/components/ui/Text";
 import { useI18n } from "@/components/providers/LanguageProvider";
 import { createMockSession } from "@/lib/mockAuth";
 
+const ALLOWED_EMAIL = "pruebas@heathuw.com";
+const ALLOWED_PASSWORD = "pruebas2026";
+
 function deriveCompanyFromEmail(email: string) {
   const domain = email.split("@")[1] ?? "empresa";
   return domain
@@ -26,8 +29,8 @@ export function LoginForm() {
     return param && param.startsWith("/") ? param : "/dashboard";
   }, [searchParams]);
 
-  const [email, setEmail] = useState("demo@heath.ai");
-  const [password, setPassword] = useState("demo");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { dict } = useI18n();
@@ -47,10 +50,14 @@ export function LoginForm() {
       setError(dict.forms.login.errors.password);
       return;
     }
+    if (trimmedEmail.toLowerCase() !== ALLOWED_EMAIL || trimmedPassword !== ALLOWED_PASSWORD) {
+      setError(dict.forms.login.errors.invalidCredentials);
+      return;
+    }
 
     setLoading(true);
 
-    const userEmail = trimmedEmail.toLowerCase();
+    const userEmail = ALLOWED_EMAIL;
     const namePart = userEmail.split("@")[0]?.slice(0, 20) ?? "Cliente";
     const userName = namePart
       .replace(/[._-]+/g, " ")

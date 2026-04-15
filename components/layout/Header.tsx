@@ -65,16 +65,9 @@ export function Header() {
           <div className="flex items-center gap-6 pl-2">
             <Link
               href="/iniciar-sesion"
-              className="text-sm font-normal text-secondary/90 transition-opacity hover:opacity-70 hover:text-primary"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-orange-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
             >
-              {dict.nav.signIn}
-            </Link>
-
-            <Link
-              href="/reservar-demo"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-orange-700 active:scale-[0.98]"
-            >
-              {dict.nav.cta}
+              {dict.forms.login.submit}
             </Link>
 
             <LanguageSwitcher />
@@ -153,18 +146,10 @@ export function Header() {
 
             <Link
               href="/iniciar-sesion"
-              className="mt-2 rounded-lg px-3 py-3 text-sm font-normal text-secondary/90 hover:bg-muted/50 hover:text-primary"
+              className="mt-2 inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-orange-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
               onClick={() => setOpen(false)}
             >
-              {dict.nav.signIn}
-            </Link>
-
-            <Link
-              href="/reservar-demo"
-              className="mt-1 rounded-full bg-accent px-4 py-3 text-center text-sm font-medium text-white"
-              onClick={() => setOpen(false)}
-            >
-              {dict.nav.cta}
+              {dict.forms.login.submit}
             </Link>
 
             <div className="mt-4 flex justify-start">

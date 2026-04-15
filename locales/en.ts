@@ -19,7 +19,7 @@ export const en = {
     company: { href: "/empresa", label: "Company" },
     signIn: "Sign in",
     dashboard: "Dashboard",
-    cta: "Request demo",
+    cta: "Enter dashboard",
     footerLinks: [
       { href: "/sectores", label: "Industries" },
       { href: "/mesa-de-trabajo", label: "Underwriting Desk" },
@@ -242,7 +242,7 @@ export const en = {
     description:
       "Centralize opportunities, assess risk, and make portfolio-aware decisions in seconds.",
     primaryCta: "See how it works",
-    secondaryCta: "Request demo",
+    secondaryCta: "Enter dashboard",
     mock: {
       tag: "Decision Engine",
       title: "Underwriting",
@@ -295,10 +295,11 @@ export const en = {
       passwordPlaceholder: "••••••••",
       submit: "Enter dashboard",
       submitting: "Signing in...",
-      hint: "Demo: email demo@heath.ai and password demo",
+      hint: "Use your credentials to continue.",
       errors: {
         email: "Enter a valid email.",
         password: "Enter your password.",
+        invalidCredentials: "Invalid credentials.",
       },
     },
   },
@@ -382,7 +383,7 @@ export const en = {
       title: "Start underwriting at",
       titleAccent: "market speed",
       description: "Move from fragmented submissions to structured underwriting intelligence.",
-      primary: "Request demo",
+      primary: "Enter dashboard",
       secondary: "Underwriting Desk",
     },
   },
@@ -458,7 +459,7 @@ export const en = {
         title: "See Heath on your",
         titleAccent: "lines of business",
         description: "Move from fragmented submissions to structured underwriting intelligence.",
-        primary: "Request demo",
+        primary: "Enter dashboard",
         secondary: "Underwriting Desk",
       },
       industryDetail: {

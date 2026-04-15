@@ -37,12 +37,14 @@ export function FinalCTA() {
         <p className="mt-6 text-lg text-secondary md:text-xl">
           {dict.landing.finalCta.description}
         </p>
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
-          <Button href="/reservar-demo" variant="primary" size="lg">
-            {dict.landing.finalCta.primary}
-          </Button>
-          <Button href="/mesa-de-trabajo" variant="secondary" size="lg">
-            {dict.landing.finalCta.secondary}
+        <div className="mt-12 flex w-full items-center justify-center">
+          <Button
+            href="/iniciar-sesion"
+            variant="primary"
+            size="lg"
+            className="w-full max-w-[320px] justify-center px-8 text-center whitespace-normal leading-tight sm:w-auto sm:min-w-[260px]"
+          >
+            {dict.forms.login.submit}
           </Button>
         </div>
       </div>

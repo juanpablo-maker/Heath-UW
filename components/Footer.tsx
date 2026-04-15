@@ -21,7 +21,7 @@ export function Footer() {
               {dict.footer.description}
             </p>
             <Link
-              href="/reservar-demo"
+              href="/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard"
               className="mt-4 inline-block text-sm font-medium text-accent hover:underline"
             >
               {dict.footer.contact}
@@ -35,7 +35,13 @@ export function Footer() {
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-3 md:justify-end">
             {(
-              [...dict.nav.footerLinks, { href: "/reservar-demo", label: dict.nav.cta }] as {
+              [
+                ...dict.nav.footerLinks,
+                {
+                  href: "/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard",
+                  label: dict.nav.cta,
+                },
+              ] as {
                 href: string;
                 label: string;
               }[]

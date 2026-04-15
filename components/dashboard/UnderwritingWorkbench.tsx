@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   AlertTriangle,
   ArrowRight,
@@ -19,7 +18,6 @@ import {
   User,
   Users,
   XCircle,
-  Zap,
   Eye,
   MessageSquare,
   PencilLine,
@@ -32,7 +30,7 @@ import {
 } from "lucide-react";
 
 import { useI18n } from "@/components/providers/LanguageProvider";
-import { clearMockSession, getMockSession, type MockUser } from "@/lib/mockAuth";
+import type { DashboardSubmissionRow } from "@/types/dashboard";
 
 const EN_TOKEN_REPLACEMENTS: Array<[string, string]> = [
   ["Solicitar más información", "Request more information"],
@@ -249,6 +247,131 @@ type Submission = {
 
 const PRIORITY_ORDER: Priority[] = ["Alta", "Media", "Baja"];
 const APPETITE_ORDER: Appetite[] = ["En apetito", "Revisar", "Fuera de apetito"];
+
+function normalizeLine(raw: string | null | undefined): Line {
+  const text = (raw ?? "").toLowerCase();
+  if (text.includes("marine") || text.includes("marit")) return "Marine Cargo";
+  if (text.includes("aviation") || text.includes("aviac")) return "Aviation";
+  if (text.includes("construct")) return "Construction";
+  return "Property";
+}
+
+function mapDecisionToStatus(raw: string | null | undefined): SubmissionStatus {
+  const text = (raw ?? "").toLowerCase();
+  if (text.includes("declin")) return "Declinado";
+  if (text.includes("accept") || text.includes("aprob")) return "Cotizado";
+  if (text.includes("review") || text.includes("revisi")) return "En revisión";
+  if (text.includes("reply")) return "Recomendado";
+  return "Nuevo";
+}
+
+function mapDecisionToAppetite(raw: string | null | undefined): Appetite {
+  const text = (raw ?? "").toLowerCase();
+  if (text.includes("declin")) return "Fuera de apetito";
+  if (text.includes("accept") || text.includes("aprob")) return "En apetito";
+  return "Revisar";
+}
+
+function mapDashboardRowsToWorkbenchSubmissions(rows: DashboardSubmissionRow[]): Submission[] {
+  const nowMs = Date.now();
+  return rows.map((row, index) => {
+    const insured = row.insured?.trim() || `Asegurado ${index + 1}`;
+    const broker = row.broker_name?.trim() || "Broker no definido";
+    const line = normalizeLine(row.line_of_business);
+    const createdAtISO = row.created_at && !Number.isNaN(Date.parse(row.created_at))
+      ? row.created_at
+      : hoursAgoISO((index + 1) * 2, nowMs);
+    const limitUSD = Number(row.insured_limit_raw) || 750000;
+    const priority: Priority = index % 3 === 0 ? "Alta" : index % 3 === 1 ? "Media" : "Baja";
+    const status = mapDecisionToStatus(row.decision);
+    const appetite = mapDecisionToAppetite(row.decision);
+    const scorePrelim = status === "Declinado" ? 42 : status === "Cotizado" ? 84 : 66;
+    const decisionLabel = row.decision?.trim() || "Pendiente";
+    const reasonLabel = row.decision_reason?.trim() || "Sin motivo informado";
+    const country = row.country?.trim() || "N/D";
+
+    return {
+      id: `db-${index + 1}`,
+      insuredName: insured,
+      broker,
+      line,
+      estimatedPremiumUSD: Math.max(18000, Math.round(limitUSD * 0.025)),
+      priority,
+      status,
+      appetite,
+      receivedAtISO: createdAtISO,
+      assignedUnderwriterId: BASE_UNDERWRITERS[index % BASE_UNDERWRITERS.length]!.id,
+      scorePrelim,
+      effectiveDateISO: isoInDays(20 + (index % 30), nowMs),
+      countryRegion: country,
+      riskType: line,
+      limitUSD,
+      deductibleUSD: Math.max(25000, Math.round(limitUSD * 0.04)),
+      leadFollow: "Follow",
+      suggestedParticipationPct: 12 + (index % 6) * 3,
+      suggestedLeadFollowPct: 8 + (index % 4) * 2,
+      dates: {
+        quoteDueISO: isoInDays(2 + (index % 4), nowMs),
+        bindingStartISO: isoInDays(7 + (index % 8), nowMs),
+      },
+      insights: [
+        {
+          id: `ins-${index}-1`,
+          icon: "apetite",
+          title: `Decisión base: ${decisionLabel}`,
+          description: `Estado fuente: ${row.decision_status ?? "Sin estado"}`,
+          impact: status === "Declinado" ? "Riesgo alto" : "Seguimiento operativo",
+          tone: status === "Declinado" ? "risk" : "warn",
+        },
+        {
+          id: `ins-${index}-2`,
+          icon: "datos",
+          title: "Motivo registrado",
+          description: reasonLabel,
+          impact: "Contexto para priorización",
+          tone: "neutral",
+        },
+      ],
+      executiveSummary: `${insured} (${broker}) en ${country}. Decision actual: ${decisionLabel}.`,
+      documents: [
+        {
+          id: `doc-${index}-1`,
+          name: "Submission base",
+          type: "Documento",
+          sizeMB: 0.4,
+          dateISO: createdAtISO,
+          processing: "Extraído",
+        },
+      ],
+      activity: [
+        {
+          id: `act-${index}-1`,
+          kind: "Submission recibido",
+          user: broker,
+          timestampISO: createdAtISO,
+        },
+      ],
+      capacityAvailableUSD: 18000000,
+      capacityUtilizationPct: 55 + (index % 30),
+      notes: [],
+      nextStepAlerts: [
+        {
+          id: `alert-${index}-1`,
+          tone: status === "Declinado" ? "risk" : "warn",
+          title: "Validar caso en mesa",
+          detail: reasonLabel,
+          etaISO: isoInDays(1, nowMs),
+        },
+      ],
+      missingDataFlags: {
+        hasLossRuns: true,
+        hasHistorySiniestros: true,
+        hasRegionalExposure: true,
+      },
+      finalDecision: null,
+    };
+  });
+}
 
 function formatMoneyUSD(n: number) {
   const nf = new Intl.NumberFormat("es-AR", {
@@ -511,28 +634,37 @@ function SystemRecommendationCard({
   suggestedParticipationPct: number;
   modelConfidencePct: number;
 }) {
+  const confidenceToneStyles =
+    modelConfidencePct > 85
+      ? {
+          border: "border-positive/25",
+          bg: "bg-positive/10",
+          text: "text-positive",
+          bar: "bg-positive",
+        }
+      : recToneStyles;
+
   return (
-    <div className={`mt-4 rounded-2xl border ${recToneStyles.border} ${recToneStyles.bg} p-4`}>
+    <div className={`mt-4 rounded-2xl border ${confidenceToneStyles.border} ${confidenceToneStyles.bg} p-4`}>
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
-            <Sparkles className={`h-4.5 w-4.5 ${recToneStyles.text}`} />
-            <div className={`text-xs font-semibold ${recToneStyles.text}`}>Recomendación del sistema</div>
+            <Sparkles className={`h-4.5 w-4.5 ${confidenceToneStyles.text}`} />
+            <div className={`text-xs font-semibold ${confidenceToneStyles.text}`}>Recomendación del sistema</div>
           </div>
           <div className="mt-1 text-lg font-extrabold tracking-tight text-primary leading-snug">
-            {recommendationAction}{" "}
-            <span className={recToneStyles.text}>({suggestedParticipationPct}%)</span>
+            {recommendationAction}
           </div>
-          <div className={`mt-1 text-sm font-semibold ${recToneStyles.text}`}>Nivel de riesgo: {riskLevel}</div>
+          <div className={`mt-1 text-sm font-semibold ${confidenceToneStyles.text}`}>Nivel de riesgo: {riskLevel}</div>
           <div className="mt-2 text-xs text-secondary">{recommendationExplanation}</div>
         </div>
 
         <div className="shrink-0 text-right">
           <div className="text-[10px] font-semibold uppercase tracking-wide text-secondary">Confianza del modelo</div>
-          <div className={`mt-1 text-2xl font-bold ${recToneStyles.text}`}>{modelConfidencePct}%</div>
+          <div className={`mt-1 text-2xl font-bold ${confidenceToneStyles.text}`}>{modelConfidencePct}%</div>
           <div className="mt-2 h-2 w-28 overflow-hidden rounded-full bg-white/40">
             <div
-              className={`h-full rounded-full ${recToneStyles.bar}`}
+              className={`h-full rounded-full ${confidenceToneStyles.bar}`}
               style={{ width: `${modelConfidencePct}%` }}
             />
           </div>
@@ -1321,15 +1453,23 @@ function ToneDot({ tone }: { tone: "good" | "warn" | "risk" | "neutral" }) {
   }
 }
 
-export function UnderwritingWorkbench() {
-  const router = useRouter();
+export function UnderwritingWorkbench({
+  sourceSubmissions,
+}: {
+  sourceSubmissions?: DashboardSubmissionRow[];
+}) {
   const { locale } = useI18n();
   const rootRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState<TabKey>("Resumen");
 
-  const initialSubmissions = useMemo(() => buildMockSubmissions(), []);
+  const initialSubmissions = useMemo(() => {
+    if (sourceSubmissions && sourceSubmissions.length > 0) {
+      return mapDashboardRowsToWorkbenchSubmissions(sourceSubmissions);
+    }
+    return buildMockSubmissions();
+  }, [sourceSubmissions]);
   const [submissions, setSubmissions] = useState<Submission[]>(initialSubmissions);
   const [selectedId, setSelectedId] = useState<string>(initialSubmissions[0]?.id ?? "");
 
@@ -1357,8 +1497,6 @@ export function UnderwritingWorkbench() {
   const [openDocModal, setOpenDocModal] = useState<null | { docId: string }>(null);
   const [docModalStatus, setDocModalStatus] = useState<"idle" | "loading">("idle");
 
-  const [user, setUser] = useState<MockUser | null>(null);
-
   // Load animation for premium feel.
   useEffect(() => {
     // #region agent log
@@ -1376,10 +1514,6 @@ export function UnderwritingWorkbench() {
     debugWorkbenchLog("H1", "isLoading-changed", { isLoading, locale });
     // #endregion
   }, [isLoading, locale]);
-
-  useEffect(() => {
-    setUser(getMockSession());
-  }, []);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -1492,11 +1626,6 @@ export function UnderwritingWorkbench() {
     setActiveTab("Resumen");
     if (highlightTimerRef.current) window.clearTimeout(highlightTimerRef.current);
     setCaseHighlightToken((t) => t + 1);
-  }
-
-  function onLogout() {
-    clearMockSession();
-    router.replace("/iniciar-sesion");
   }
 
   function onRefreshTray() {
@@ -1858,20 +1987,9 @@ export function UnderwritingWorkbench() {
     );
   }
 
-  const selectedTone = priorityTone(selected.priority);
-  const appTone = appetiteTone(selected.appetite);
   const stTone = statusTone(selected.status);
-  const headerPriorityTone = priorityTone(selected.priority);
 
   const finalDecision = selected.finalDecision ?? null;
-
-  const userNameFull = user?.name ?? "Usuario";
-  const userParts = userNameFull.split(" ").filter(Boolean);
-  const userShortName = userParts[0] ?? userNameFull;
-  const userInitials = userParts
-    .slice(0, 2)
-    .map((p) => p[0]?.toUpperCase() ?? "")
-    .join("") || "U";
 
   const activeCases = visibleSubmissions.length;
   const unassignedCount = visibleSubmissions.filter(
@@ -1896,6 +2014,8 @@ export function UnderwritingWorkbench() {
       ? `Faltan: ${missingDataLabels.join(", ")}`
       : "Evidencia suficiente para decidir";
 
+  const isArcticCase = selected.insuredName.toLowerCase().includes("arctic drilling group colombia");
+
   const riskLevel: "Bajo" | "Medio" | "Alto" =
     selected.appetite === "Fuera de apetito"
       ? "Alto"
@@ -1907,8 +2027,12 @@ export function UnderwritingWorkbench() {
           ? "Medio"
           : "Bajo";
 
+  const effectiveRiskLevel: "Bajo" | "Medio" | "Alto" = isArcticCase ? "Bajo" : riskLevel;
+  const effectivePriority: Priority = isArcticCase ? "Alta" : selected.priority;
+  const modelConfidencePct = isArcticCase ? 95 : 60;
+
   const recTone: "good" | "warn" | "risk" =
-    riskLevel === "Bajo" ? "good" : riskLevel === "Medio" ? "warn" : "risk";
+    effectiveRiskLevel === "Bajo" ? "good" : effectiveRiskLevel === "Medio" ? "warn" : "risk";
 
   const recToneStyles =
     recTone === "good"
@@ -1916,20 +2040,6 @@ export function UnderwritingWorkbench() {
       : recTone === "warn"
         ? { border: "border-accent/25", bg: "bg-accent/10", text: "text-accent", bar: "bg-accent" }
         : { border: "border-risk/25", bg: "bg-risk/10", text: "text-risk", bar: "bg-risk" };
-
-  const modelConfidencePct = Math.max(
-    40,
-    Math.min(
-      96,
-      Math.round(
-        58 +
-          selected.scorePrelim * 0.28 -
-          missingDataCount * 12 -
-          (selectedSlaRisk ? 8 : 0) -
-          (selected.capacityUtilizationPct > 85 ? 6 : 0)
-      )
-    )
-  );
 
   const recommendationAction =
     selected.appetite === "En apetito"
@@ -1949,20 +2059,10 @@ export function UnderwritingWorkbench() {
 
   return (
     <div ref={rootRef} className="min-h-screen bg-[#F7F2EC]">
-        <div className="sticky top-0 z-50 border-b border-border bg-[#F7F2EC]/70 backdrop-blur-md">
-        <div className="mx-auto max-w-[1600px] px-4 py-3 md:px-6 md:py-4">
+      <div className="mx-auto max-w-[1600px] px-4 pt-2 md:px-6 md:pt-3">
+        <div className="rounded-2xl border border-border/65 bg-[#DAD7D2]/65 p-3 shadow-soft backdrop-blur-sm">
           <div className="flex flex-wrap items-center gap-3">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-border bg-white/80 shadow-soft">
-                <Zap className="h-5 w-5 text-accent" />
-              </div>
-              <div className="leading-tight">
-                <div className="text-base font-bold tracking-tight text-primary">Heath</div>
-                <div className="text-xs text-secondary">Panel de Underwriting</div>
-              </div>
-            </div>
-
-            <div className="ml-auto flex min-w-0 flex-1 items-center gap-3 md:ml-0">
+            <div className="flex min-w-0 flex-1 items-center gap-3">
               <div className="relative flex-1 min-w-[360px]">
                 <Search className="absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-secondary" />
                 <input
@@ -2154,25 +2254,6 @@ export function UnderwritingWorkbench() {
                   className="inline-flex items-center justify-center rounded-full border border-border/60 bg-white/60 px-3 py-1.5 text-sm font-semibold text-secondary shadow-none transition-all hover:bg-white hover:text-primary active:scale-[0.99] disabled:opacity-60"
                 >
                   <RefreshCw className="h-4.5 w-4.5 text-secondary" />
-                </button>
-              </div>
-
-              <div className="block">
-                <button
-                  type="button"
-                  onClick={onLogout}
-                  className="inline-flex items-center gap-2 rounded-2xl border border-border/60 bg-white/60 px-3 py-2 transition-all hover:bg-white active:scale-[0.99]"
-                >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-2xl border border-border bg-white/80 text-sm font-bold text-primary shadow-soft">
-                    {userInitials}
-                  </span>
-                  <span className="hidden md:flex items-center gap-1 min-w-0">
-                    <span className="max-w-[110px] truncate text-sm font-semibold text-primary">
-                      {userShortName}
-                    </span>
-                    <ChevronDown className="h-4 w-4 text-secondary" />
-                  </span>
-                  <ChevronDown className="md:hidden h-4 w-4 text-secondary" />
                 </button>
               </div>
             </div>
@@ -2393,9 +2474,6 @@ export function UnderwritingWorkbench() {
                       <span className="inline-flex items-center rounded-full border border-intelligence/25 bg-intelligence/8 px-2 py-0.5 text-[11px] font-semibold text-intelligence">
                         Caso activo
                       </span>
-                      <span className="inline-flex items-center rounded-full border border-border/60 bg-white/45 px-2 py-0.5 text-[11px] font-semibold text-secondary">
-                        {selected.id}
-                      </span>
                     </div>
                     <div className="mt-1 text-2xl font-bold tracking-tight text-primary leading-tight">
                       {selected.insuredName}
@@ -2419,55 +2497,23 @@ export function UnderwritingWorkbench() {
 
                 <SystemRecommendationCard
                   recToneStyles={recToneStyles}
-                  riskLevel={riskLevel}
+                  riskLevel={effectiveRiskLevel}
                   recommendationAction={recommendationAction}
                   recommendationExplanation={recommendationExplanation}
                   suggestedParticipationPct={selected.suggestedParticipationPct}
                   modelConfidencePct={modelConfidencePct}
                 />
 
-                <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                  <div className="px-2 py-1.5">
-                    <div className="text-[10px] font-semibold text-secondary">Score</div>
-                    <div className="mt-1 flex items-center justify-between gap-3">
-                      <div className="text-lg font-bold text-primary">{selected.scorePrelim}/100</div>
-                      <div
-                        className={`rounded-full border ${headerPriorityTone.border} ${headerPriorityTone.bg} px-2 py-0.5 text-[11px] font-semibold ${headerPriorityTone.text}`}
-                      >
-                        {selected.priority}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="px-2 py-1.5">
-                    <div className="text-[10px] font-semibold text-secondary">Apetito</div>
-                    <div className="mt-1">
-                      <BadgePill toneBorder={appTone.border} toneBg={appTone.bg} toneText={appTone.text}>
-                        {selected.appetite}
-                      </BadgePill>
-                    </div>
-                  </div>
-                  <div className="px-2 py-1.5">
-                    <div className="text-[10px] font-semibold text-secondary">Underwriter</div>
-                    <div className="mt-1 flex items-center gap-2 text-sm font-bold text-primary">
-                      <User className="h-4.5 w-4.5 text-secondary" />
-                      {selectedAssignedName}
-                    </div>
-                    <div className="mt-1 text-xs text-secondary">
-                      SLA:{" "}
-                      <span className={`font-semibold ${selectedSlaRisk ? "text-risk" : "text-primary"}`}>
-                        {selectedSlaRemainingLabel}
+                <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-[1fr_auto]">
+                  <div className="rounded-xl border border-border/60 bg-white/55 p-3">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-[10px] font-semibold uppercase tracking-wide text-secondary/80">
+                        Estado operativo
                       </span>
                     </div>
-                  </div>
-                </div>
-
-                <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-                  <div className="flex flex-wrap items-center gap-2">
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
                     <BadgePill toneBorder={stTone.border} toneBg={stTone.bg} toneText={stTone.text}>
                       {selected.status}
-                    </BadgePill>
-                    <BadgePill toneBorder={selectedTone.border} toneBg={selectedTone.bg} toneText={selectedTone.text}>
-                      {selected.priority}
                     </BadgePill>
                     {selected.status === "Pendiente información" ? (
                       <span className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/8 px-2 py-0.5 text-[11px] font-semibold text-accent">
@@ -2475,13 +2521,33 @@ export function UnderwritingWorkbench() {
                         Faltan datos
                       </span>
                     ) : null}
+                    </div>
+                    <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
+                      <div>
+                        <div className="text-[10px] font-semibold text-secondary">Prioridad</div>
+                        <div className="mt-0.5 text-sm font-bold text-primary">{effectivePriority}</div>
+                      </div>
+                      <div>
+                        <div className="text-[10px] font-semibold text-secondary">Underwriter</div>
+                        <div className="mt-0.5 flex items-center gap-2 text-sm font-bold text-primary">
+                          <User className="h-4 w-4 text-secondary" />
+                          {selectedAssignedName}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-[10px] font-semibold text-secondary">SLA restante</div>
+                        <div className={`mt-0.5 text-sm font-bold ${selectedSlaRisk ? "text-risk" : "text-primary"}`}>
+                          {selectedSlaRemainingLabel}
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center md:items-start">
                     <button
                       type="button"
                       onClick={() => onSelectSubmission(selected.id)}
-                      className="inline-flex items-center justify-center rounded-full border border-border bg-white/70 px-3 py-2 text-sm font-semibold text-secondary transition-all hover:bg-white hover:text-primary active:scale-[0.99]"
+                      className="inline-flex items-center justify-center rounded-full border border-border bg-white/70 px-4 py-2 text-sm font-semibold text-secondary transition-all hover:bg-white hover:text-primary active:scale-[0.99]"
                     >
                       <RefreshCw className="mr-2 h-4.5 w-4.5" />
                       Re-sincronizar
@@ -2578,7 +2644,6 @@ export function UnderwritingWorkbench() {
                         label="Participación"
                         value={`${selected.suggestedParticipationPct}%`}
                       />
-                      <SummaryField label="Score" value={`${selected.scorePrelim}/100`} />
                       <SummaryField label="Asignado" value={selectedAssignedName} />
                     </div>
 
@@ -2938,7 +3003,7 @@ export function UnderwritingWorkbench() {
 
                       <div className="rounded-2xl border border-border bg-white/70 p-3">
                         <div className="text-xs font-semibold text-secondary">Capacidad</div>
-                        <div className="mt-1 text-2xl font-bold text-primary">
+                        <div className="mt-1 text-[clamp(1rem,2.2vw,1.4rem)] font-bold leading-tight text-primary">
                           {formatMoneyUSD(selected.capacityAvailableUSD)}
                         </div>
                         <div className="mt-0.5 text-xs text-secondary">Uso {selected.capacityUtilizationPct}%</div>
