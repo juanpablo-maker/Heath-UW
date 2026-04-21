@@ -22,7 +22,7 @@ export default function MesaDeTrabajoPage() {
 
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
           <Link
-            href="/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard"
+            href="/iniciar-sesion?redirect=/dashboard"
             className="inline-flex items-center justify-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white shadow-accent-glow transition-all hover:brightness-105 active:scale-[0.98]"
           >
             {dict.pages.mesa.primary}

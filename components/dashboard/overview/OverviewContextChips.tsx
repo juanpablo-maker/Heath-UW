@@ -15,10 +15,10 @@ import type {
 } from "@/lib/dashboard/overview-filter-types";
 
 const iconWrap =
-  "flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-primary/[0.04] text-secondary";
+  "flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-primary/[0.08] text-primary";
 
 const chipClass = cn(
-  "group inline-flex max-w-full min-w-0 items-center gap-2 truncate rounded-full border border-border/45 bg-white/90 px-2.5 py-1.5 pl-2 text-left text-xs font-medium text-primary/95",
+  "group inline-flex max-w-full min-w-0 items-center gap-2 truncate rounded-full border border-border/60 bg-white px-2.5 py-1.5 pl-2 text-left text-xs font-medium text-primary",
   "shadow-[0_1px_2px_rgba(15,23,42,0.04)]",
   overviewMotion,
   "hover:border-primary/20 hover:bg-white hover:shadow-[0_2px_8px_-2px_rgba(15,23,42,0.08)]",
@@ -79,7 +79,7 @@ export function OverviewContextChips({
               </span>
               <span className="min-w-0 flex-1 truncate">{label}</span>
               <ChevronDown
-                className="h-3.5 w-3.5 shrink-0 text-secondary/40 transition-opacity group-hover:text-secondary/70"
+                className="h-3.5 w-3.5 shrink-0 text-secondary transition-opacity group-hover:text-primary"
                 aria-hidden
               />
             </button>

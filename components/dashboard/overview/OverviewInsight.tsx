@@ -26,16 +26,16 @@ export function OverviewInsight({
       role="status"
     >
       <span
-        className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/[0.06] text-primary/70"
+        className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/[0.08] text-primary"
         aria-hidden
       >
         <Sparkles className="h-3.5 w-3.5" strokeWidth={2} />
       </span>
       <div className="min-w-0 flex-1">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-secondary/90">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-secondary">
           {o.insightLabel}
         </p>
-        <p className="mt-1 max-w-4xl text-xs leading-relaxed text-primary/95">
+        <p className="mt-1 max-w-4xl text-xs leading-relaxed text-primary">
           {text}
         </p>
       </div>

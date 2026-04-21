@@ -9,13 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#070B17",
-        backgroundSecondary: "#0D1224",
-        card: "#131930",
-        primary: "#F5F7FF",
-        secondary: "#A7B0C9",
-        border: "#26304E",
-        muted: "#1A2342",
+        background: "var(--background)",
+        backgroundSecondary: "var(--background-secondary)",
+        card: "var(--card)",
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        border: "var(--border)",
+        muted: "var(--muted)",
 
         // Semantic accents (strict)
         accent: "#F97316", // CTA / action

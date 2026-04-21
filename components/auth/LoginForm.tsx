@@ -26,7 +26,7 @@ export function LoginForm() {
 
   const redirect = useMemo(() => {
     const param = searchParams.get("redirect");
-    return param && param.startsWith("/") ? param : "/dashboard";
+    return param && param.startsWith("/") ? param : "/dashboard?view=operations";
   }, [searchParams]);
 
   const [email, setEmail] = useState("");
@@ -98,7 +98,7 @@ export function LoginForm() {
             autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-primary outline-none ring-accent focus:ring-2"
+            className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-500 outline-none ring-accent focus:ring-2"
             placeholder={dict.forms.login.emailPlaceholder}
           />
         </div>
@@ -114,7 +114,7 @@ export function LoginForm() {
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-primary outline-none ring-accent focus:ring-2"
+            className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-500 outline-none ring-accent focus:ring-2"
             placeholder={dict.forms.login.passwordPlaceholder}
           />
         </div>

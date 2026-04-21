@@ -18,32 +18,32 @@ export function DecisionBadge({ value }: { value: string | null | undefined }) {
       ({
         accept: {
           className:
-            "bg-emerald-50 text-emerald-800 ring-1 ring-inset ring-emerald-200/80",
+            "bg-emerald-100 text-emerald-900 ring-1 ring-inset ring-emerald-300",
           label: b.decisionAccept,
         },
         approved: {
           className:
-            "bg-emerald-50 text-emerald-800 ring-1 ring-inset ring-emerald-200/80",
+            "bg-emerald-100 text-emerald-900 ring-1 ring-inset ring-emerald-300",
           label: b.decisionApproved,
         },
         decline: {
           className:
-            "bg-rose-50 text-rose-800 ring-1 ring-inset ring-rose-200/80",
+            "bg-rose-100 text-rose-900 ring-1 ring-inset ring-rose-300",
           label: b.decisionDecline,
         },
         declined: {
           className:
-            "bg-rose-50 text-rose-800 ring-1 ring-inset ring-rose-200/80",
+            "bg-rose-100 text-rose-900 ring-1 ring-inset ring-rose-300",
           label: b.decisionDeclined,
         },
         refer: {
           className:
-            "bg-amber-50 text-amber-900 ring-1 ring-inset ring-amber-200/80",
+            "bg-amber-100 text-amber-950 ring-1 ring-inset ring-amber-300",
           label: b.decisionRefer,
         },
         pending: {
           className:
-            "bg-slate-100 text-slate-700 ring-1 ring-inset ring-slate-200/90",
+            "bg-slate-200 text-slate-800 ring-1 ring-inset ring-slate-300",
           label: b.decisionPending,
         },
       }) as const,
@@ -63,7 +63,7 @@ export function DecisionBadge({ value }: { value: string | null | undefined }) {
   const display = preset?.label ?? resolved;
   const className =
     preset?.className ??
-    "bg-slate-50 text-slate-800 ring-1 ring-inset ring-slate-200/90";
+    "bg-slate-100 text-slate-900 ring-1 ring-inset ring-slate-300";
   return (
     <span
       className={`inline-flex max-w-[10rem] truncate rounded-md px-2 py-0.5 text-xs font-medium ${className}`}
@@ -93,8 +93,8 @@ export function ReplySentBadge({
     <span
       className={`inline-flex rounded-md px-2 py-0.5 text-xs font-medium ring-1 ring-inset ${
         value
-          ? "bg-emerald-50 text-emerald-800 ring-emerald-200/80"
-          : "bg-slate-50 text-secondary ring-border"
+          ? "bg-emerald-100 text-emerald-900 ring-emerald-300"
+          : "bg-slate-100 text-slate-700 ring-slate-300"
       }`}
     >
       {value ? b.replySent : b.replyPending}

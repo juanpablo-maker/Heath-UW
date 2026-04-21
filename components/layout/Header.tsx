@@ -61,7 +61,7 @@ export function Header() {
 
           <div className="flex items-center gap-5 pl-2">
             <Link
-              href="/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard"
+              href="/iniciar-sesion?redirect=/dashboard"
               className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-[#6d28d9] to-[#f97316] px-6 py-3 text-sm font-semibold text-white shadow-accent-glow transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
             >
               {dict.nav.signIn}
@@ -113,7 +113,7 @@ export function Header() {
             ))}
 
             <Link
-              href="/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard"
+              href="/iniciar-sesion?redirect=/dashboard"
               className="mt-2 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-[#6d28d9] to-[#f97316] px-6 py-3 text-sm font-semibold text-white shadow-accent-glow transition-all duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
               onClick={() => setOpen(false)}
             >

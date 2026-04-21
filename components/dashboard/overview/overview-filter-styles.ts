@@ -2,7 +2,7 @@ import { cn } from "@/lib/cn";
 import { classes } from "@/styles/design-system";
 
 export const overviewFilterLabelClass =
-  "mb-0.5 block text-[9px] font-medium uppercase tracking-wide text-secondary/65";
+  "mb-0.5 block text-[9px] font-medium uppercase tracking-wide text-secondary";
 
 /** Compact dropdown / input — light, toolbar-style */
 export const overviewFilterControlClass = cn(
@@ -10,7 +10,7 @@ export const overviewFilterControlClass = cn(
   "shadow-none transition-colors hover:border-border/50",
   "focus:border-primary/30 focus:outline-none focus:ring-1 focus:ring-primary/10",
   classes.focusRing,
-  "placeholder:text-secondary/55"
+  "placeholder:text-secondary"
 );
 
 export const overviewFilterDateInputClass = cn(
@@ -24,7 +24,7 @@ export const overviewFilterBarClass =
   "rounded-xl border border-border/20 bg-white px-3 py-2 shadow-[0_1px_4px_-1px_rgba(15,23,42,0.08)] sm:px-4 sm:py-2";
 
 export const overviewFilterResetClass = cn(
-  "h-8 shrink-0 rounded-full border border-border/30 bg-transparent px-3 text-[11px] font-medium text-secondary/80",
+  "h-8 shrink-0 rounded-full border border-border/30 bg-transparent px-3 text-[11px] font-medium text-secondary",
   "transition-colors hover:border-border/50 hover:bg-backgroundSecondary/50 hover:text-primary",
   classes.focusRing
 );

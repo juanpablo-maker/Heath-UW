@@ -467,7 +467,7 @@ export function SubscriptionDashboard() {
 
   function onLogout() {
     clearMockSession();
-    router.replace(`/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard`);
+    router.replace(`/iniciar-sesion?redirect=/dashboard`);
   }
 
   function onSaveConfig() {

@@ -8,13 +8,13 @@ export const mainNav = [
 
 export const ctaNav = {
   label: "Ingresá al dashboard",
-  href: "/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard",
+  href: "/iniciar-sesion?redirect=/dashboard",
 } as const;
 
 export const footerNav = [
   ...mainNav,
   {
     label: "Ingresá al dashboard",
-    href: "/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard",
+    href: "/iniciar-sesion?redirect=/dashboard",
   },
 ] as const;

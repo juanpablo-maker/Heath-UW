@@ -45,7 +45,7 @@ import { overviewMetricsSurface } from "@/components/dashboard/overview/overview
 
 function DashboardViewSkeleton() {
   return (
-    <div className="min-h-screen bg-backgroundSecondary/60">
+    <div className="dashboard-theme min-h-screen bg-backgroundSecondary/60">
       <div className="mx-auto max-w-[1400px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <div className="mb-5 h-20 animate-pulse rounded-xl bg-muted/80" />
         <div className="mb-5 h-12 animate-pulse rounded-xl bg-muted/65" />
@@ -183,10 +183,10 @@ function DashboardViewInner({
     view === "operations" ? d.views.operationsSubtitle : d.views.overviewSubtitle;
 
   return (
-    <div className="min-h-screen bg-[#F7F2EC]">
+    <div className="dashboard-theme min-h-screen bg-background">
       <div className="mx-auto max-w-[1400px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <header className="mb-6 border-b border-border/60 pb-5">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-secondary/75">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-secondary">
             {d.brand}
           </p>
           <div className="mt-1.5 flex flex-wrap items-start justify-between gap-3">
@@ -196,7 +196,7 @@ function DashboardViewInner({
                   <h1 className="text-2xl font-semibold tracking-tight text-primary sm:text-[1.65rem]">
                     {ov.pageTitle}
                   </h1>
-                  <p className="mt-1 max-w-2xl text-[13px] leading-snug text-secondary/88">
+                  <p className="mt-1 max-w-2xl text-[13px] leading-snug text-secondary">
                     {ov.pageSubtitle}
                   </p>
                   <OverviewContextChips
@@ -265,10 +265,10 @@ function DashboardViewInner({
 
             <section className={cn(overviewMetricsSurface, "mb-8 p-4 sm:p-5")}>
               <div className="mb-5 border-b border-border/30 pb-4">
-                <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-secondary/90">
+                <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-secondary">
                   {ov.kpiSectionTitle}
                 </h2>
-                <p className="mt-1 max-w-xl text-xs leading-relaxed text-secondary/75">
+                <p className="mt-1 max-w-xl text-xs leading-relaxed text-secondary">
                   {ov.kpiSectionDesc}
                 </p>
               </div>
@@ -281,10 +281,10 @@ function DashboardViewInner({
 
             <section className="space-y-5 border-t border-border/35 pt-8">
               <div className="max-w-2xl">
-                <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-secondary/90">
+                <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-secondary">
                   {d.sections.chartsTitle}
                 </h2>
-                <p className="mt-1 text-xs leading-relaxed text-secondary/75">
+                <p className="mt-1 text-xs leading-relaxed text-secondary">
                   {d.sections.chartsDesc}
                 </p>
               </div>

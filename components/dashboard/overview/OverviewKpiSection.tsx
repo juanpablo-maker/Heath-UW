@@ -27,14 +27,14 @@ function KpiDelta({
 }) {
   if (prev === 0 && curr === 0) {
     return (
-      <p className="mt-1 text-[10px] tabular-nums leading-tight text-secondary/65">
+      <p className="mt-1 text-[10px] tabular-nums leading-tight text-secondary">
         — {priorLabel}
       </p>
     );
   }
   if (prev === 0) {
     return (
-      <p className="mt-1 text-[10px] leading-tight text-secondary/75">
+      <p className="mt-1 text-[10px] leading-tight text-secondary">
         {newPeriodLabel}
       </p>
     );
@@ -45,7 +45,7 @@ function KpiDelta({
 
   if (kind === "neutral") {
     return (
-      <p className="mt-1 text-[10px] tabular-nums leading-tight text-secondary/75">
+      <p className="mt-1 text-[10px] tabular-nums leading-tight text-secondary">
         {up ? "↑" : "↓"} {pct}% {priorLabel}
       </p>
     );
@@ -164,7 +164,7 @@ export function OverviewKpiSection({
               "before:pointer-events-none before:absolute before:left-0 before:right-0 before:top-0 before:h-[2px] before:content-[''] before:opacity-90"
             )}
           >
-            <p className="truncate text-[10px] font-medium uppercase tracking-[0.08em] text-secondary/80">
+            <p className="truncate text-[10px] font-medium uppercase tracking-[0.08em] text-secondary">
               {label}
             </p>
             <p className="mt-1 text-lg font-semibold tabular-nums leading-none tracking-tight text-primary sm:text-[1.35rem]">

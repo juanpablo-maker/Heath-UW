@@ -8,6 +8,7 @@
   --card: #131930;
   --primary: #f5f7ff;
   --secondary: #a7b0c9;
+  --muted: #1a2342;
   --accent: #f97316;
   --intelligence: #7c3aed;
   --positive: #10b981;
@@ -17,6 +18,17 @@
 
 body {
   @apply antialiased bg-background text-primary;
+}
+
+/* Dashboard readability override: keep marketing dark, make data views clearer. */
+.dashboard-theme {
+  --background: #ffffff;
+  --background-secondary: #f7f7f8;
+  --card: #ffffff;
+  --primary: #0b1220;
+  --secondary: #334155;
+  --muted: #f1f3f5;
+  --border: #d9dde3;
 }
 
 /* Landing: rejilla (máscara radial) */

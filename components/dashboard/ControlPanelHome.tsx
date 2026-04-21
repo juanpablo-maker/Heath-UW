@@ -418,7 +418,7 @@ export function ControlPanelShell({
 
   function onLogout() {
     clearMockSession();
-    router.replace(`/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard&lang=${locale}`);
+    router.replace(`/iniciar-sesion?redirect=/dashboard&lang=${locale}`);
   }
 
   return (

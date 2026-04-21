@@ -513,8 +513,11 @@ export function DashboardCharts({
                     }}
                     contentStyle={{
                       borderRadius: 12,
-                      border: "1px solid #e5e7eb",
+                      border: "1px solid #cbd5e1",
+                      backgroundColor: "#ffffff",
+                      color: "#0f172a",
                       fontSize: 12,
+                      boxShadow: "0 8px 20px rgba(15, 23, 42, 0.12)",
                     }}
                   />
                 </PieChart>
@@ -593,13 +596,13 @@ export function DashboardCharts({
             layout="vertical"
             margin={{ top: 2, right: 84, left: 16, bottom: 2 }}
           >
-            <CartesianGrid strokeDasharray="2 4" stroke="#f1f5f9" horizontal={false} />
-            <XAxis type="number" tick={{ fontSize: 11 }} stroke="#94a3b8" />
+            <CartesianGrid strokeDasharray="2 4" stroke="#d6dce8" horizontal={false} />
+            <XAxis type="number" tick={{ fontSize: 11, fill: "#475569" }} stroke="#94a3b8" />
             <YAxis
               type="category"
               dataKey="name"
               width={96}
-              tick={{ fontSize: 10 }}
+              tick={{ fontSize: 10, fill: "#334155" }}
               stroke="#94a3b8"
             />
             <Tooltip
@@ -618,8 +621,11 @@ export function DashboardCharts({
               }}
               contentStyle={{
                 borderRadius: 12,
-                border: "1px solid #e5e7eb",
+                border: "1px solid #cbd5e1",
+                backgroundColor: "#ffffff",
+                color: "#0f172a",
                 fontSize: 12,
+                boxShadow: "0 8px 20px rgba(15, 23, 42, 0.12)",
               }}
             />
             <Bar dataKey="value" radius={[0, 6, 6, 0]} fill="#8B5E3C">
@@ -669,17 +675,17 @@ export function DashboardCharts({
             layout="vertical"
             margin={{ top: 2, right: 84, left: 16, bottom: 2 }}
           >
-            <CartesianGrid strokeDasharray="2 4" stroke="#f1f5f9" horizontal={false} />
+            <CartesianGrid strokeDasharray="2 4" stroke="#d6dce8" horizontal={false} />
             <XAxis
               type="number"
-              tick={{ fontSize: 11 }}
+              tick={{ fontSize: 11, fill: "#475569" }}
               stroke="#94a3b8"
             />
             <YAxis
               type="category"
               dataKey="name"
               width={102}
-              tick={{ fontSize: 10 }}
+              tick={{ fontSize: 10, fill: "#334155" }}
               stroke="#94a3b8"
             />
             <Tooltip
@@ -698,8 +704,11 @@ export function DashboardCharts({
               }}
               contentStyle={{
                 borderRadius: 12,
-                border: "1px solid #e5e7eb",
+                border: "1px solid #cbd5e1",
+                backgroundColor: "#ffffff",
+                color: "#0f172a",
                 fontSize: 12,
+                boxShadow: "0 8px 20px rgba(15, 23, 42, 0.12)",
               }}
             />
             <Bar dataKey="value" radius={[0, 6, 6, 0]} fill="#5B6473">

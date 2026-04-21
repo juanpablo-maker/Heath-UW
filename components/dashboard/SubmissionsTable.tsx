@@ -61,7 +61,7 @@ export function SubmissionsTable({
       <div className="overflow-x-auto">
         <table className="w-full min-w-[1100px] border-collapse text-left text-sm">
           <thead>
-            <tr className="border-b border-border bg-backgroundSecondary/90">
+            <tr className="border-b border-border bg-backgroundSecondary">
               {columns.map((col) => (
                 <th
                   key={col.key}
@@ -76,7 +76,7 @@ export function SubmissionsTable({
             {rows.map((row, i) => (
               <tr
                 key={`${row.created_at ?? ""}-${row.insured ?? ""}-${i}`}
-                className="cursor-pointer border-b border-border/80 transition-colors hover:bg-backgroundSecondary/50"
+                className="cursor-pointer border-b border-border/80 transition-colors hover:bg-backgroundSecondary"
                 onClick={() => setSelectedRow(row)}
               >
                 <td className="px-4 py-3 font-medium text-primary">
@@ -141,7 +141,7 @@ export function SubmissionsTable({
         <div className="fixed inset-0 z-50 flex justify-end">
           <button
             type="button"
-            className="absolute inset-0 bg-primary/20 backdrop-blur-[1px]"
+            className="absolute inset-0 bg-primary/30 backdrop-blur-[1px]"
             aria-label="Close submission details"
             onClick={() => setSelectedRow(null)}
           />
