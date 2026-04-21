@@ -3,8 +3,38 @@
 import Link from "next/link";
 import { useI18n } from "@/components/providers/LanguageProvider";
 
+type HeroCopy = {
+  badge: string;
+  subBadge: string;
+  title: string;
+  titleAccent: string;
+  description: string;
+  primaryCta: string;
+  secondaryCta: string;
+  mock: {
+    tag: string;
+    title: string;
+    subtitle: string;
+    realtime: string;
+    columns: {
+      submission: string;
+      operation: string;
+      status: string;
+      risk: string;
+    };
+    rows: Array<{
+      deal: string;
+      status: string;
+      riskLabel: string;
+    }>;
+    capacityLabel: string;
+    capacityValue: string;
+  };
+};
+
 export function Hero() {
   const { dict } = useI18n();
+  const hero = (dict as unknown as { hero: HeroCopy }).hero;
 
   return (
     <section className="relative overflow-hidden bg-background px-6 pb-14 pt-8 md:px-8 md:pb-18 md:pt-10">
@@ -27,21 +57,21 @@ export function Hero() {
                   className="h-1.5 w-1.5 animate-landing-pulse rounded-full bg-positive motion-reduce:animate-none"
                   aria-hidden
                 />
-                {dict.hero.badge}
+                {hero.badge}
               </span>
               <span className="hidden text-xs font-medium text-secondary sm:inline">
-                {dict.hero.subBadge}
+                {hero.subBadge}
               </span>
             </div>
 
             <h1 className="text-5xl font-bold tracking-tight text-primary md:text-6xl lg:text-[4.25rem] lg:leading-[1.02]">
-              {dict.hero.title}{" "}
+              {hero.title}{" "}
               <span className="bg-gradient-to-r from-accent via-[#ea580c] to-intelligence bg-clip-text text-transparent">
-                {dict.hero.titleAccent}
+                {hero.titleAccent}
               </span>
             </h1>
             <p className="mt-3 max-w-[48ch] text-lg leading-relaxed text-secondary md:text-xl">
-              {dict.hero.description}
+              {hero.description}
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -49,13 +79,13 @@ export function Hero() {
                 href="/mesa-de-trabajo"
                 className="inline-flex items-center justify-center rounded-full border border-border bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-soft transition-all hover:border-intelligence/25 hover:shadow-card active:scale-[0.98]"
               >
-                {dict.hero.primaryCta}
+                {hero.primaryCta}
               </Link>
               <Link
                 href="/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard"
                 className="inline-flex items-center justify-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white shadow-soft transition-all hover:bg-orange-700 active:scale-[0.98]"
               >
-                {dict.hero.secondaryCta}
+                {hero.secondaryCta}
               </Link>
             </div>
           </div>
@@ -72,7 +102,7 @@ export function Hero() {
 
             <div className="relative pt-0 motion-reduce:animate-none lg:animate-landing-float">
               <div className="absolute -right-1 -top-6 z-10 rounded-lg border border-border bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-intelligence shadow-soft">
-                {dict.hero.mock.tag}
+                {hero.mock.tag}
               </div>
               <MockTradingDesk />
             </div>
@@ -85,33 +115,34 @@ export function Hero() {
 
 function MockTradingDesk() {
   const { dict } = useI18n();
+  const hero = (dict as unknown as { hero: HeroCopy }).hero;
   const submissions = [
     {
       broker: "Broker A",
-      deal: dict.hero.mock.rows[0]?.deal ?? "",
-      status: dict.hero.mock.rows[0]?.status ?? "",
-      riskLabel: dict.hero.mock.rows[0]?.riskLabel ?? "",
+      deal: hero.mock.rows[0]?.deal ?? "",
+      status: hero.mock.rows[0]?.status ?? "",
+      riskLabel: hero.mock.rows[0]?.riskLabel ?? "",
       riskTone: "positive" as const,
     },
     {
       broker: "Broker B",
-      deal: dict.hero.mock.rows[1]?.deal ?? "",
-      status: dict.hero.mock.rows[1]?.status ?? "",
-      riskLabel: dict.hero.mock.rows[1]?.riskLabel ?? "",
+      deal: hero.mock.rows[1]?.deal ?? "",
+      status: hero.mock.rows[1]?.status ?? "",
+      riskLabel: hero.mock.rows[1]?.riskLabel ?? "",
       riskTone: "risk" as const,
     },
     {
       broker: "Broker C",
-      deal: dict.hero.mock.rows[2]?.deal ?? "",
-      status: dict.hero.mock.rows[2]?.status ?? "",
-      riskLabel: dict.hero.mock.rows[2]?.riskLabel ?? "",
+      deal: hero.mock.rows[2]?.deal ?? "",
+      status: hero.mock.rows[2]?.status ?? "",
+      riskLabel: hero.mock.rows[2]?.riskLabel ?? "",
       riskTone: "positive" as const,
     },
     {
       broker: "Broker D",
-      deal: dict.hero.mock.rows[3]?.deal ?? "",
-      status: dict.hero.mock.rows[3]?.status ?? "",
-      riskLabel: dict.hero.mock.rows[3]?.riskLabel ?? "",
+      deal: hero.mock.rows[3]?.deal ?? "",
+      status: hero.mock.rows[3]?.status ?? "",
+      riskLabel: hero.mock.rows[3]?.riskLabel ?? "",
       riskTone: "risk" as const,
     },
   ];
@@ -120,23 +151,23 @@ function MockTradingDesk() {
     <div className="rounded-2xl border border-border bg-card/95 p-2.5 shadow-card-lift ring-1 ring-primary/[0.04] backdrop-blur-sm transition-shadow duration-300 hover:shadow-card-lift md:p-3">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-sm font-semibold text-primary">{dict.hero.mock.title}</p>
+          <p className="text-sm font-semibold text-primary">{hero.mock.title}</p>
           <p className="mt-1 text-xs text-secondary">
-            {dict.hero.mock.subtitle}
+            {hero.mock.subtitle}
           </p>
         </div>
 
         <span className="shrink-0 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
-          {dict.hero.mock.realtime}
+          {hero.mock.realtime}
         </span>
       </div>
 
       <div className="mt-4 overflow-hidden rounded-xl border border-border bg-background/50">
         <div className="grid grid-cols-[1fr_1.4fr_0.9fr_0.7fr] gap-0 border-b border-border bg-muted/40 px-3 py-2.5 text-[11px] font-bold uppercase tracking-wide text-secondary">
-          <span>{dict.hero.mock.columns.submission}</span>
-          <span>{dict.hero.mock.columns.operation}</span>
-          <span>{dict.hero.mock.columns.status}</span>
-          <span>{dict.hero.mock.columns.risk}</span>
+          <span>{hero.mock.columns.submission}</span>
+          <span>{hero.mock.columns.operation}</span>
+          <span>{hero.mock.columns.status}</span>
+          <span>{hero.mock.columns.risk}</span>
         </div>
 
         <div className="divide-y divide-border bg-card">
@@ -176,11 +207,11 @@ function MockTradingDesk() {
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-gradient-to-r from-muted/50 to-backgroundSecondary/80 px-3 py-2.5">
         <div className="text-xs font-medium text-secondary">
-          {dict.hero.mock.capacityLabel}
+          {hero.mock.capacityLabel}
         </div>
         <div className="flex items-center gap-2 text-xs font-bold">
           <span className="h-1.5 w-1.5 rounded-full bg-positive" aria-hidden />
-          <span className="text-primary">{dict.hero.mock.capacityValue}</span>
+          <span className="text-primary">{hero.mock.capacityValue}</span>
         </div>
       </div>
     </div>

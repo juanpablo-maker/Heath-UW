@@ -52,12 +52,12 @@ type BarLabelPayload = {
 };
 
 type BarLabelProps = {
-  x?: number;
-  y?: number;
-  width?: number;
-  height?: number;
-  value?: number;
-  payload?: BarLabelPayload;
+  x?: unknown;
+  y?: unknown;
+  width?: unknown;
+  height?: unknown;
+  value?: unknown;
+  payload?: BarLabelPayload | null;
 };
 
 function ChartCard({
@@ -303,23 +303,30 @@ export function DashboardCharts({
   const decisionItemTone = (name: string, current: number) =>
     trendTone(deltaPct(current, previousDecisionValue(name)));
 
-  const renderDeltaBarLabel =
-    (getPreviousValue: (fullName: string) => number) =>
-    ({ x, y, width, height, value, payload }: BarLabelProps) => {
+  const createDeltaBarLabelRenderer = (
+    getPreviousValue: (fullName: string) => number
+  ) => {
+    const DeltaBarLabel = ({ x, y, width, height, value, payload }: BarLabelProps) => {
+      const xNum = typeof x === "number" ? x : Number(x);
+      const yNum = typeof y === "number" ? y : Number(y);
+      const widthNum = typeof width === "number" ? width : Number(width);
+      const heightNum = typeof height === "number" ? height : Number(height);
+      const valueNum = typeof value === "number" ? value : Number(value);
+
       if (
-        typeof x !== "number" ||
-        typeof y !== "number" ||
-        typeof width !== "number" ||
-        typeof height !== "number" ||
-        typeof value !== "number"
+        !Number.isFinite(xNum) ||
+        !Number.isFinite(yNum) ||
+        !Number.isFinite(widthNum) ||
+        !Number.isFinite(heightNum) ||
+        !Number.isFinite(valueNum)
       ) {
         return null;
       }
       const previous = getPreviousValue(payload?.fullName ?? "");
-      const tone = trendTone(deltaPct(value, previous));
-      const label = `${value.toLocaleString(loc)} (${compactDelta(value, previous)})`;
-      const xPos = x + width + 8;
-      const yPos = y + height / 2 + 0.5;
+      const tone = trendTone(deltaPct(valueNum, previous));
+      const label = `${valueNum.toLocaleString(loc)} (${compactDelta(valueNum, previous)})`;
+      const xPos = xNum + widthNum + 8;
+      const yPos = yNum + heightNum / 2 + 0.5;
       const badgeWidth = Math.max(64, label.length * 6.2 + 10);
 
       return (
@@ -347,6 +354,9 @@ export function DashboardCharts({
         </g>
       );
     };
+    DeltaBarLabel.displayName = "DeltaBarLabel";
+    return DeltaBarLabel;
+  };
   const topDecisionShareDelta = topDecision
     ? pct(topDecision.value, decisionTotal) - previousDecisionShare(topDecision.name)
     : 0;
@@ -616,7 +626,7 @@ export function DashboardCharts({
               <LabelList
                 dataKey="value"
                 position="insideRight"
-                content={renderDeltaBarLabel(previousDeclineValue)}
+                  content={createDeltaBarLabelRenderer(previousDeclineValue)}
               />
             </Bar>
           </BarChart>
@@ -696,7 +706,7 @@ export function DashboardCharts({
               <LabelList
                 dataKey="value"
                 position="insideRight"
-                content={renderDeltaBarLabel(previousBrokerValue)}
+                  content={createDeltaBarLabelRenderer(previousBrokerValue)}
               />
             </Bar>
           </BarChart>

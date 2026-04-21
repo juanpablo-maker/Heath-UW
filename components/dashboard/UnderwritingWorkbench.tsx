@@ -1592,6 +1592,7 @@ export function UnderwritingWorkbench({
 }) {
   const { locale } = useI18n();
   const rootRef = useRef<HTMLDivElement>(null);
+  const initialLocaleRef = useRef(locale);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState<TabKey>("Resumen");
@@ -1632,11 +1633,11 @@ export function UnderwritingWorkbench({
   // Load animation for premium feel.
   useEffect(() => {
     // #region agent log
-    debugWorkbenchLog("H1", "component-mounted", { locale });
+    debugWorkbenchLog("H1", "component-mounted", { locale: initialLocaleRef.current });
     // #endregion
     const t = window.setTimeout(() => setIsLoading(false), 900);
     // #region agent log
-    debugWorkbenchLog("H1", "loading-timeout-scheduled", { delayMs: 900, locale });
+    debugWorkbenchLog("H1", "loading-timeout-scheduled", { delayMs: 900, locale: initialLocaleRef.current });
     // #endregion
     return () => window.clearTimeout(t);
   }, []);
