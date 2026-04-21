@@ -11,9 +11,9 @@ const generalSans = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Heath — Plataforma de suscripción",
+  title: "Heath — Modern underwriting business",
   description:
-    "Plataforma impulsada por IA para gestionar solicitudes, optimizar capacidad y tomar mejores decisiones de suscripción.",
+    "Modern MGM underwriting business combining technical expertise, portfolio discipline, and technology-enabled execution.",
 };
 
 export default function RootLayout({

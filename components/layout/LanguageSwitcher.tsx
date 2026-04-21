@@ -8,7 +8,7 @@ export function LanguageSwitcher() {
 
   return (
     <div
-      className="relative z-[60] inline-flex items-center gap-0 rounded-md border border-border/40 bg-background/40 p-0.5"
+      className="relative z-[60] inline-flex items-center gap-0 rounded-full border border-border/70 bg-background p-0.5 shadow-soft"
       role="group"
       aria-label={dict.languageSwitcher.ariaLabel}
     >
@@ -19,10 +19,10 @@ export function LanguageSwitcher() {
             key={item}
             type="button"
             onClick={() => setLocale(item)}
-            className={`rounded px-1.5 py-0.5 text-[11px] font-normal tabular-nums transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent/50 ${
+            className={`rounded-full px-2.5 py-1 text-xs font-semibold tabular-nums transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent/50 ${
               active
-                ? "text-primary"
-                : "text-secondary/50 hover:text-secondary/80"
+                ? "bg-primary text-white"
+                : "text-secondary hover:text-primary"
             }`}
             aria-pressed={active}
           >

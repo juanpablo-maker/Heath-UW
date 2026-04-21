@@ -43,7 +43,7 @@ export type OverviewFilterState = {
 };
 
 export const DEFAULT_OVERVIEW_FILTERS: OverviewFilterState = {
-  datePreset: "last_30d",
+  datePreset: "last_7d",
   customFrom: null,
   customTo: null,
   lineOfBusiness: "all",

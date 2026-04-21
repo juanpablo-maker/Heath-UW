@@ -7,24 +7,20 @@ export const en = {
     ariaMain: "Main",
     ariaMobile: "Mobile",
     menu: "Menu",
-    platformMenuId: "nav-platform-menu",
-    platform: "Platform",
-    platformMenuAria: "Platform",
-    platformItems: [
-      { href: "/soluciones", label: "Solutions" },
-      { href: "/sectores", label: "Industries" },
-      { href: "/mesa-de-trabajo", label: "Underwriting Desk" },
-    ],
-    solutions: { href: "/soluciones", label: "Solutions" },
-    company: { href: "/empresa", label: "Company" },
+    home: { href: "/", label: "Home" },
+    underwriting: { href: "/underwriting", label: "Underwriting" },
+    portfolio: { href: "/portfolio", label: "Portfolio" },
+    technology: { href: "/technology", label: "Technology" },
+    company: { href: "/company", label: "Company" },
+    contact: { href: "/contact", label: "Contact" },
+    cta: "Contact us",
     signIn: "Sign in",
-    dashboard: "Dashboard",
-    cta: "Go to Dashboard",
     footerLinks: [
-      { href: "/sectores", label: "Industries" },
-      { href: "/mesa-de-trabajo", label: "Underwriting Desk" },
-      { href: "/soluciones", label: "Solutions" },
-      { href: "/empresa", label: "Company" },
+      { href: "/underwriting", label: "Underwriting" },
+      { href: "/portfolio", label: "Portfolio" },
+      { href: "/technology", label: "Technology" },
+      { href: "/company", label: "Company" },
+      { href: "/contact", label: "Contact" },
     ],
   },
   languageSwitcher: {
@@ -234,39 +230,82 @@ export const en = {
     },
     minutesSuffix: "min",
   },
-  hero: {
-    badge: "Real-time underwriting",
-    subBadge: "Decisions with portfolio context",
-    title: "Underwriting is no longer a process.",
-    titleAccent: "It is now a real-time operating system",
-    description:
-      "Centralize opportunities, assess risk, and make portfolio-aware decisions in seconds.",
-    primaryCta: "See how it works",
-    secondaryCta: "Go to Dashboard",
-    mock: {
-      tag: "Decision Engine",
-      title: "Underwriting",
-      subtitle: "Trading-desk view",
-      realtime: "Real time",
-      columns: {
-        submission: "Submission",
-        operation: "Operation",
-        status: "Status",
-        risk: "Risk",
-      },
-      rows: [
-        { deal: "Marine property", status: "New", riskLabel: "Low" },
-        { deal: "Aviation renewal", status: "In review", riskLabel: "High" },
-        { deal: "Property renewal", status: "Decision", riskLabel: "Low" },
-        { deal: "Specialty package", status: "In review", riskLabel: "High" },
+  home: {
+    hero: {
+      kicker: "Modern MGM",
+      title: "Heath is a partner-led underwriting platform operating as a modern MGM.",
+      subtitle:
+        "We combine underwriting expertise, proprietary technology, and aligned capacity to deliver disciplined, risk-adjusted growth.",
+      primaryCta: "Contact us",
+      secondaryCta: "Explore underwriting",
+    },
+    quickTags: [
+      "Specialty lines",
+      "Portfolio discipline",
+      "Aligned capacity",
+      "Technology-enabled execution",
+    ],
+    whoWeAre: {
+      title: "Who We Are",
+      body:
+        "We are an independent underwriting business focused on specialty markets. We prioritize long-term value creation, portfolio discipline, and alignment over short-term volume.",
+    },
+    model: {
+      title: "The Heath Model",
+      pillars: [
+        {
+          title: "Underwriting expertise",
+          body: "Senior underwriting capability by line, supported by clear technical authority and governance.",
+        },
+        {
+          title: "Aligned capacity mindset",
+          body: "We operate with a capacity partner perspective, protecting technical outcomes through the cycle.",
+        },
+        {
+          title: "Portfolio-driven decisions",
+          body: "Each risk is evaluated in portfolio context, including accumulation, concentration, and expected return.",
+        },
+        {
+          title: "Technology-enabled execution",
+          body: "Our proprietary platform enhances speed and operating quality without replacing underwriting judgment.",
+        },
       ],
-      capacityLabel: "Capacity-aware participation",
-      capacityValue: "82% available",
+    },
+    edge: {
+      title: "The Heath Edge",
+      items: [
+        {
+          title: "Underwrite with context",
+          body: "We turn fragmented submission data into decision-ready underwriting context.",
+        },
+        {
+          title: "Alignment over volume",
+          body: "We optimize for partner alignment and sustained technical performance, not transactional growth.",
+        },
+        {
+          title: "Built for speed",
+          body: "We pair underwriting discipline with execution velocity to respond quickly without compromising standards.",
+        },
+      ],
+    },
+    credibility: {
+      title: "Institutional Credibility",
+      items: [
+        "Specialty underwriting focus across selected lines of business.",
+        "Portfolio discipline embedded at quotation and bind stages.",
+        "Capacity partnerships in active development with long-term orientation.",
+      ],
+    },
+    finalCta: {
+      title: "Build capacity with technical discipline",
+      body: "We partner with institutions seeking durable underwriting performance in specialty markets.",
+      primary: "Partner with us",
+      secondary: "Company",
     },
   },
   footer: {
     description:
-      "AI-powered underwriting platform for insurers and reinsurers. Faster decisions with stronger portfolio control.",
+      "Modern MGM focused on specialty underwriting, with technical discipline, portfolio governance, and technology-enabled execution.",
     contact: "Contact us",
     copyright: "© Heath. All rights reserved.",
   },
@@ -385,6 +424,56 @@ export const en = {
       description: "Move from fragmented submissions to structured underwriting intelligence.",
       primary: "Go to Dashboard",
       secondary: "Underwriting Desk",
+    },
+  },
+  pagesV2: {
+    underwriting: {
+      title: "Underwriting",
+      subtitle: "Specialty underwriting delivered with technical rigor, clear authority, and portfolio discipline.",
+      intro:
+        "Our underwriting practice combines line-specific expertise, decision governance, and continuous technical performance oversight.",
+      pillars: [
+        "Technical risk assessment by industry and structure.",
+        "Consistent participation guidelines and limit deployment.",
+        "Continuous quality control and cohort performance tracking.",
+      ],
+    },
+    portfolio: {
+      title: "Portfolio",
+      subtitle: "We build the book with a full view of accumulation, concentration, and expected return.",
+      intro:
+        "Every underwriting decision is validated in portfolio context to support durable technical outcomes through the cycle.",
+      metrics: [
+        "Accumulation discipline by geography, line, and event.",
+        "Monitoring of mix, retention, and expected profitability.",
+        "Dynamic oversight of exposure and operating limits.",
+      ],
+    },
+    technology: {
+      title: "Technology",
+      subtitle: "Our proprietary platform enables efficient execution and operating consistency.",
+      intro:
+        "Technology is an enabling layer within Heath's underwriting model, designed to improve speed, data quality, and decision traceability.",
+      capabilities: [
+        "Submission intake from email and digital channels.",
+        "Structured extraction and normalization of underwriting data.",
+        "Scoring and prioritization to support underwriting decisions.",
+        "Operational dashboard and portfolio analytics.",
+      ],
+    },
+    company: {
+      title: "Company",
+      subtitle: "Heath is an independent underwriting business built for long-term partnerships.",
+      intro:
+        "We operate with institutional standards: technical discipline, clear governance, and alignment with capacity partners.",
+    },
+    contact: {
+      title: "Contact",
+      subtitle: "Discuss underwriting opportunities, capacity alignment, and strategic partnerships.",
+      intro:
+        "We work with reinsurers, insurers, and brokers focused on sustained technical performance.",
+      primary: "Send an email",
+      secondary: "Partner with us",
     },
   },
   pages: {

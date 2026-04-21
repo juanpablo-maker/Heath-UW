@@ -7,24 +7,20 @@ export const es = {
     ariaMain: "Principal",
     ariaMobile: "Móvil",
     menu: "Menú",
-    platformMenuId: "nav-platform-menu",
-    platform: "Plataforma",
-    platformMenuAria: "Plataforma",
-    platformItems: [
-      { href: "/soluciones", label: "Soluciones" },
-      { href: "/sectores", label: "Sectores" },
-      { href: "/mesa-de-trabajo", label: "Panel de Underwriting" },
-    ],
-    solutions: { href: "/soluciones", label: "Soluciones" },
-    company: { href: "/empresa", label: "Empresa" },
+    home: { href: "/", label: "Inicio" },
+    underwriting: { href: "/underwriting", label: "Suscripción" },
+    portfolio: { href: "/portfolio", label: "Portafolio" },
+    technology: { href: "/technology", label: "Tecnología" },
+    company: { href: "/company", label: "Compañía" },
+    contact: { href: "/contact", label: "Contacto" },
+    cta: "Contáctanos",
     signIn: "Iniciar sesión",
-    dashboard: "Dashboard",
-    cta: "Ingresá al dashboard",
     footerLinks: [
-      { href: "/sectores", label: "Sectores" },
-      { href: "/mesa-de-trabajo", label: "Panel de Underwriting" },
-      { href: "/soluciones", label: "Soluciones" },
-      { href: "/empresa", label: "Empresa" },
+      { href: "/underwriting", label: "Suscripción" },
+      { href: "/portfolio", label: "Portafolio" },
+      { href: "/technology", label: "Tecnología" },
+      { href: "/company", label: "Compañía" },
+      { href: "/contact", label: "Contacto" },
     ],
   },
   languageSwitcher: {
@@ -236,40 +232,83 @@ export const es = {
     },
     minutesSuffix: "min",
   },
-  hero: {
-    badge: "Underwriting en tiempo real",
-    subBadge: "Decisiones con contexto de portafolio",
-    title: "La suscripción dejó de ser un proceso.",
-    titleAccent: "Ahora es un sistema en tiempo real",
-    description:
-      "Centraliza oportunidades, evalúa riesgos y toma decisiones con contexto de portafolio en segundos.",
-    primaryCta: "Ver cómo funciona",
-    secondaryCta: "Ingresá al dashboard",
-    mock: {
-      tag: "Motor de Decisión",
-      title: "Underwriting",
-      subtitle: "Vista tipo mesa de trading",
-      realtime: "En tiempo real",
-      columns: {
-        submission: "Solicitud",
-        operation: "Operación",
-        status: "Estado",
-        risk: "Riesgo",
-      },
-      rows: [
-        { deal: "Prop. marítimo", status: "Nueva", riskLabel: "Bajo" },
-        { deal: "Renovación aviación", status: "En revisión", riskLabel: "Alto" },
-        { deal: "Renovación propiedad", status: "Decisión", riskLabel: "Bajo" },
-        { deal: "Paquete especializado", status: "En revisión", riskLabel: "Alto" },
+  home: {
+    hero: {
+      kicker: "MGM moderno",
+      title: "Heath es una plataforma de suscripción liderada por socios, operando como un MGM moderno.",
+      subtitle:
+        "Combinamos experiencia técnica de suscripción, tecnología propietaria y capacidad alineada para construir crecimiento disciplinado ajustado por riesgo.",
+      primaryCta: "Contáctanos",
+      secondaryCta: "Explorar suscripción",
+    },
+    quickTags: [
+      "Líneas especializadas",
+      "Disciplina de portafolio",
+      "Capacidad alineada",
+      "Ejecución tecnológica",
+    ],
+    whoWeAre: {
+      title: "Quiénes somos",
+      body:
+        "Somos una firma independiente enfocada en suscripción especializada. Priorizamos valor de largo plazo, disciplina de portafolio y alineación de intereses por encima del volumen transaccional.",
+    },
+    model: {
+      title: "El modelo Heath",
+      pillars: [
+        {
+          title: "Experiencia de suscripción",
+          body: "Equipos senior por línea, con criterio técnico y gobernanza clara en cada decisión.",
+        },
+        {
+          title: "Mentalidad de capacidad alineada",
+          body: "Suscribimos como socios de capacidad, protegiendo desempeño técnico y consistencia en el ciclo.",
+        },
+        {
+          title: "Decisiones guiadas por portafolio",
+          body: "Cada riesgo se evalúa en contexto de acumulación, concentración y retorno esperado.",
+        },
+        {
+          title: "Ejecución habilitada por tecnología",
+          body: "Nuestra plataforma propia acelera procesos y eleva calidad operativa sin desplazar el juicio técnico.",
+        },
       ],
-      capacityLabel: "Participación consciente de capacidad",
-      capacityValue: "82% disponible",
+    },
+    edge: {
+      title: "La ventaja Heath",
+      items: [
+        {
+          title: "Suscribir con contexto",
+          body: "Convertimos información dispersa en una lectura completa para decidir mejor y con mayor consistencia.",
+        },
+        {
+          title: "Alineación sobre volumen",
+          body: "Priorizamos relaciones de largo plazo y desempeño técnico sostenido, no crecimiento indiscriminado.",
+        },
+        {
+          title: "Preparados para velocidad",
+          body: "Combinamos disciplina técnica con ejecución ágil para responder al mercado sin comprometer calidad.",
+        },
+      ],
+    },
+    credibility: {
+      title: "Credenciales en construcción",
+      items: [
+        "Foco en líneas especializadas con criterios técnicos definidos.",
+        "Disciplina de portafolio desde el origen de cada decisión.",
+        "Desarrollo de alianzas de capacidad con visión de largo plazo.",
+      ],
+    },
+    finalCta: {
+      title: "Construyamos capacidad con disciplina técnica",
+      body: "Trabajamos con socios que buscan resultados sostenibles en mercados especializados.",
+      primary: "Asóciate con nosotros",
+      secondary: "Compañía",
     },
   },
   footer: {
     description:
-      "Plataforma de suscripción impulsada por IA para aseguradores y reaseguradores. Decisiones más rápidas y mejor control del portafolio.",
-    contact: "Contáctanos",
+      "MGM moderno orientado a suscripción especializada, con disciplina técnica, enfoque de portafolio y ejecución habilitada por tecnología.",
+    contact: "Contact us",
     copyright: "© Heath. Todos los derechos reservados.",
   },
   forms: {
@@ -290,7 +329,7 @@ export const es = {
     },
     login: {
       title: "Iniciar sesión",
-      subtitle: "Accedé al dashboard de suscripción (mock, sin backend).",
+      subtitle: "Accedé al dashboard de suscripción.",
       email: "Correo corporativo",
       emailPlaceholder: "nombre@empresa.com",
       password: "Contraseña",
@@ -387,6 +426,56 @@ export const es = {
       description: "Pasá de solicitudes fragmentadas a inteligencia de suscripción estructurada.",
       primary: "Ingresá al dashboard",
       secondary: "Panel de Underwriting",
+    },
+  },
+  pagesV2: {
+    underwriting: {
+      title: "Suscripción",
+      subtitle: "Suscripción especializada con enfoque técnico, autoridad clara y disciplina de cartera.",
+      intro:
+        "Nuestra práctica de suscripción combina experiencia por línea, gobernanza de decisiones y seguimiento de desempeño técnico.",
+      pillars: [
+        "Evaluación técnica por sector y estructura de riesgo.",
+        "Lineamientos de participación y límites consistentes.",
+        "Control continuo de calidad y desempeño por cohorte.",
+      ],
+    },
+    portfolio: {
+      title: "Portafolio",
+      subtitle: "Construimos el libro con visión integral de acumulación, concentración y retorno esperado.",
+      intro:
+        "Cada decisión se valida en contexto de portafolio para sostener resultados técnicos y estabilidad en el ciclo.",
+      metrics: [
+        "Disciplina de acumulación por zona, línea y evento.",
+        "Seguimiento de mix, retención y rentabilidad esperada.",
+        "Monitoreo dinámico de exposición y límites operativos.",
+      ],
+    },
+    technology: {
+      title: "Tecnología",
+      subtitle: "Nuestra plataforma propietaria habilita ejecución eficiente y consistencia operativa.",
+      intro:
+        "La tecnología es una capa habilitadora dentro del modelo de suscripción de Heath, diseñada para mejorar tiempos, calidad de datos y trazabilidad.",
+      capabilities: [
+        "Ingesta de submissions por correo y canales digitales.",
+        "Extracción y normalización de datos relevantes.",
+        "Scoring y priorización para soporte al underwriter.",
+        "Dashboard operativo y analítica de portafolio.",
+      ],
+    },
+    company: {
+      title: "Compañía",
+      subtitle: "Heath es una firma independiente de suscripción orientada a asociaciones de largo plazo.",
+      intro:
+        "Operamos con una visión institucional: disciplina técnica, gobernanza clara y alineación con socios de capacidad.",
+    },
+    contact: {
+      title: "Contacto",
+      subtitle: "Conversemos sobre oportunidades de suscripción, capacidad y alianzas estratégicas.",
+      intro:
+        "Trabajamos con reaseguradores, aseguradores y brokers que priorizan desempeño técnico sostenido.",
+      primary: "Enviar un email",
+      secondary: "Explorar suscripción",
     },
   },
   pages: {

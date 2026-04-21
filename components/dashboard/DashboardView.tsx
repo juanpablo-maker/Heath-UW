@@ -144,6 +144,18 @@ function DashboardViewInner({
     () => computeKpisFromSubmissions(previousSubmissions),
     [previousSubmissions]
   );
+  const previousChartDecision = useMemo(
+    () => aggregateDecisionDistribution(previousSubmissions),
+    [previousSubmissions]
+  );
+  const previousChartDecline = useMemo(
+    () => aggregateDeclineReasons(previousSubmissions),
+    [previousSubmissions]
+  );
+  const previousChartBroker = useMemo(
+    () => aggregateBrokerDistribution(previousSubmissions),
+    [previousSubmissions]
+  );
 
   const ov = d.overview;
 
@@ -280,6 +292,9 @@ function DashboardViewInner({
                 decisionDistribution={chartDecision}
                 declineReasons={chartDecline}
                 brokerDistribution={chartBroker}
+                previousDecisionDistribution={previousChartDecision}
+                previousDeclineReasons={previousChartDecline}
+                previousBrokerDistribution={previousChartBroker}
               />
             </section>
 

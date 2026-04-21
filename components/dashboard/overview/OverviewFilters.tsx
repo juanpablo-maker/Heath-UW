@@ -63,7 +63,7 @@ function datePresetLabel(
         ? `${v.customFrom} → ${v.customTo}`
         : t.dateCustom;
     default:
-      return t.dateLast30d;
+      return t.dateLast7d;
   }
 }
 
@@ -167,7 +167,7 @@ export const OverviewFilters = forwardRef<
     if (preset === "custom") {
       const now = new Date();
       const from = new Date(now);
-      from.setDate(from.getDate() - 29);
+      from.setDate(from.getDate() - 6);
       onChange({
         ...value,
         datePreset: "custom",
@@ -395,44 +395,27 @@ export const OverviewFilters = forwardRef<
         </select>
       </div>
 
-      <details
-        className={cn(
-          "rounded-xl border border-dashed border-border/45 bg-backgroundSecondary/25 p-3",
-          !compact &&
-            "min-w-[min(100%,12rem)] flex-none [&[open]]:border-border/55 [&[open]]:bg-backgroundSecondary/40"
-        )}
-      >
-        <summary
-          className={cn(
-            "cursor-pointer list-none text-sm font-semibold text-primary",
-            "marker:content-none [&::-webkit-details-marker]:hidden",
-            compact && "mb-3"
-          )}
+      <div className={cn(!compact && "min-w-[min(100%,12rem)] flex-[1.1]")}>
+        <label
+          className={overviewFilterLabelClass}
+          htmlFor={`${pre}-decline-reason`}
         >
-          {t.moreFilters}
-        </summary>
-        <div className={cn("mt-3", compact && "mt-0")}>
-          <label
-            className={overviewFilterLabelClass}
-            htmlFor={`${pre}-decline-reason`}
-          >
-            {t.declineReason}
-          </label>
-          <select
-            id={`${pre}-decline-reason`}
-            className={overviewFilterControlClass}
-            value={value.declineReason}
-            onChange={(e) => patch({ declineReason: e.target.value })}
-          >
-            <option value="all">{t.declineReasonAll}</option>
-            {declineReasons.map((r) => (
-              <option key={r} value={r}>
-                {r}
-              </option>
-            ))}
-          </select>
-        </div>
-      </details>
+          {t.declineReason}
+        </label>
+        <select
+          id={`${pre}-decline-reason`}
+          className={overviewFilterControlClass}
+          value={value.declineReason}
+          onChange={(e) => patch({ declineReason: e.target.value })}
+        >
+          <option value="all">{t.declineReasonAll}</option>
+          {declineReasons.map((r) => (
+            <option key={r} value={r}>
+              {r}
+            </option>
+          ))}
+        </select>
+      </div>
 
       {!compact && activeCount > 0 ? (
         <div className="ml-auto flex shrink-0 items-center">

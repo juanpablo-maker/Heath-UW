@@ -17,12 +17,12 @@ export function Footer() {
             >
               Heath
             </Link>
-            <p className="mt-2 text-sm text-secondary">
+            <p className="mt-3 text-sm leading-relaxed text-secondary">
               {dict.footer.description}
             </p>
             <Link
-              href="/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard"
-              className="mt-4 inline-block text-sm font-medium text-accent hover:underline"
+              href="/contact"
+              className="mt-4 inline-block text-sm font-semibold text-primary hover:underline"
             >
               {dict.footer.contact}
             </Link>
@@ -38,7 +38,7 @@ export function Footer() {
               [
                 ...dict.nav.footerLinks,
                 {
-                  href: "/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard",
+                  href: "/contact",
                   label: dict.nav.cta,
                 },
               ] as {

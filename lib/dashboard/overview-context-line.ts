@@ -20,7 +20,7 @@ export function getOverviewDateChipLabel(filters: OverviewFilterState): string {
         ? `${filters.customFrom} → ${filters.customTo}`
         : "Custom range";
     default:
-      return "Last 30 days";
+      return "Last 7 days";
   }
 }
 
