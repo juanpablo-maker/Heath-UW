@@ -18,7 +18,7 @@ export default function ContactPage() {
           <div className="mt-10 flex flex-wrap gap-3">
             <a
               href="mailto:sales@heathuw.com"
-              className="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-soft transition-opacity hover:opacity-90"
+              className="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm font-semibold text-background shadow-soft transition-opacity hover:opacity-90"
             >
               {copy.primary}
             </a>

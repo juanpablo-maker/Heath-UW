@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --background-secondary: #fafafa;
-  --card: #ffffff;
-  --primary: #0f172a;
-  --secondary: #6b7280;
+  --background: #070b17;
+  --background-secondary: #0d1224;
+  --card: #131930;
+  --primary: #f5f7ff;
+  --secondary: #a7b0c9;
   --accent: #f97316;
   --intelligence: #7c3aed;
   --positive: #10b981;
   --risk: #ef4444;
-  --border: #e5e7eb;
+  --border: #26304e;
 }
 
 body {
@@ -22,14 +22,14 @@ body {
 /* Landing: rejilla (máscara radial) */
 .landing-hero-grid {
   background-image:
-    linear-gradient(to right, rgb(229 231 235 / 0.55) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(229 231 235 / 0.55) 1px, transparent 1px);
+    linear-gradient(to right, rgb(124 58 237 / 0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(124 58 237 / 0.2) 1px, transparent 1px);
   background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 75% 65% at 50% 40%, black 20%, transparent 72%);
+  mask-image: radial-gradient(ellipse 80% 68% at 50% 40%, black 25%, transparent 74%);
   -webkit-mask-image: radial-gradient(
-    ellipse 75% 65% at 50% 40%,
-    black 20%,
-    transparent 72%
+    ellipse 80% 68% at 50% 40%,
+    black 25%,
+    transparent 74%
   );
 }
 

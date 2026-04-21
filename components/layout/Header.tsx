@@ -9,10 +9,10 @@ import { isFullBleedPath } from "@/lib/layout-paths";
 
 function navTextLinkClass(active: boolean) {
   return [
-    "rounded-md px-1 py-2 text-sm font-medium transition-colors",
+    "rounded-md px-1 py-2 text-sm font-medium transition-all duration-200",
     active
-      ? "text-primary underline decoration-primary/30 underline-offset-[8px]"
-      : "text-secondary/90 hover:text-primary hover:underline hover:decoration-border hover:underline-offset-[8px]",
+      ? "text-primary underline decoration-[#a78bfa]/60 underline-offset-[8px]"
+      : "text-secondary/90 hover:text-primary hover:underline hover:decoration-[#7c3aed]/25 hover:underline-offset-[8px]",
   ].join(" ");
 }
 
@@ -36,7 +36,7 @@ export function Header() {
   }
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/70 bg-background/90 backdrop-blur-xl supports-[backdrop-filter]:bg-background/80">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/80 bg-background/90 shadow-soft backdrop-blur-xl supports-[backdrop-filter]:bg-background/75">
       <div className="mx-auto flex h-[3.75rem] max-w-6xl items-center justify-between gap-6 px-6 md:h-16 md:px-8">
         <Link
           href="/"
@@ -62,7 +62,7 @@ export function Header() {
           <div className="flex items-center gap-5 pl-2">
             <Link
               href="/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard"
-              className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-soft transition-all duration-200 hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
+              className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-[#6d28d9] to-[#f97316] px-6 py-3 text-sm font-semibold text-white shadow-accent-glow transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
             >
               {dict.nav.signIn}
             </Link>
@@ -74,7 +74,7 @@ export function Header() {
         <div className="ml-auto flex items-center gap-2 lg:hidden">
           <button
             type="button"
-            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border/80 text-primary"
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border/80 bg-card text-primary"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((o) => !o)}
@@ -96,7 +96,7 @@ export function Header() {
       {open && (
         <div
           id="mobile-nav"
-          className="border-t border-border/50 bg-background/80 px-6 py-4 backdrop-blur-xl lg:hidden"
+          className="border-t border-border/50 bg-background/90 px-6 py-4 backdrop-blur-xl lg:hidden"
         >
           <nav className="flex flex-col gap-0.5" aria-label={dict.nav.ariaMobile}>
             {links.map((item) => (
@@ -114,7 +114,7 @@ export function Header() {
 
             <Link
               href="/iniciar-sesion?redirect=/panel-de-suscripcion-dashboard"
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-soft transition-all duration-200 hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
+              className="mt-2 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-[#6d28d9] to-[#f97316] px-6 py-3 text-sm font-semibold text-white shadow-accent-glow transition-all duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
               onClick={() => setOpen(false)}
             >
               {dict.nav.signIn}

@@ -9,13 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#FFFFFF",
-        backgroundSecondary: "#FAFAFA",
-        card: "#FFFFFF",
-        primary: "#0F172A",
-        secondary: "#6B7280",
-        border: "#E5E7EB",
-        muted: "#F5F5F5",
+        background: "#070B17",
+        backgroundSecondary: "#0D1224",
+        card: "#131930",
+        primary: "#F5F7FF",
+        secondary: "#A7B0C9",
+        border: "#26304E",
+        muted: "#1A2342",
 
         // Semantic accents (strict)
         accent: "#F97316", // CTA / action
@@ -28,16 +28,16 @@ const config: Config = {
         sans: ["var(--font-general-sans)", "sans-serif"],
       },
       boxShadow: {
-        soft: "0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04)",
-        card: "0 1px 2px rgba(0, 0, 0, 0.05), 0 12px 40px rgba(0, 0, 0, 0.06)",
+        soft: "0 8px 24px rgba(3, 7, 18, 0.34)",
+        card: "0 20px 48px rgba(4, 9, 25, 0.46)",
         "accent-glow":
           "0 0 0 1px rgba(249, 115, 22, 0.12), 0 2px 8px rgba(249, 115, 22, 0.15), 0 24px 48px rgba(15, 23, 42, 0.08)",
         "card-lift":
-          "0 1px 2px rgba(0, 0, 0, 0.04), 0 20px 50px rgba(15, 23, 42, 0.1)",
+          "0 12px 30px rgba(4, 9, 25, 0.4), 0 28px 64px rgba(4, 9, 25, 0.56)",
       },
       backgroundImage: {
         "hero-glow":
-          "radial-gradient(ellipse 90% 60% at 100% 0%, rgba(249, 115, 22, 0.09), transparent 55%), radial-gradient(ellipse 70% 50% at 0% 100%, rgba(124, 58, 237, 0.07), transparent 50%)",
+          "radial-gradient(ellipse 95% 60% at 95% 0%, rgba(249, 115, 22, 0.2), transparent 58%), radial-gradient(ellipse 75% 55% at 0% 100%, rgba(124, 58, 237, 0.22), transparent 52%)",
       },
       keyframes: {
         "landing-float": {
