@@ -32,8 +32,16 @@ export default function ContactPage() {
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[
               "sales@heathuw.com",
-              locale === "es" ? "Respuesta inicial en 24h hábiles" : "Initial response within 24 business hours",
-              locale === "es" ? "Alianzas y capacidad" : "Partnerships and capacity",
+              locale === "es"
+                ? "Respuesta inicial en 24h hábiles"
+                : locale === "zh"
+                  ? "24 个工作小时内初步回复"
+                  : "Initial response within 24 business hours",
+              locale === "es"
+                ? "Alianzas y capacidad"
+                : locale === "zh"
+                  ? "合作与承保能力"
+                  : "Partnerships and capacity",
             ].map((item) => (
               <article key={item} className="rounded-2xl border border-border bg-backgroundSecondary p-5 text-sm text-primary">
                 {item}

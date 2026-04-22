@@ -108,7 +108,7 @@ export function DashboardCharts({
 }: DashboardChartsProps) {
   const { locale, dict } = useI18n();
   const c = dict.dashboard.charts;
-  const loc = locale === "en" ? "en-US" : "es";
+  const loc = locale === "en" ? "en-US" : locale === "zh" ? "zh-CN" : "es";
 
   const decisionData = decisionDistribution.map((d) => {
     const label = translateDataLabel(d.label, locale) ?? d.label;
@@ -126,7 +126,7 @@ export function DashboardCharts({
     const rest = sorted.slice(topN);
     const restSum = rest.reduce((acc, r) => acc + r.value, 0);
     if (restSum <= 0) return top;
-    const otherLabel = locale === "es" ? "Otros" : "Other";
+    const otherLabel = locale === "es" ? "Otros" : locale === "zh" ? "其他" : "Other";
     return [
       ...top,
       { name: otherLabel, fullName: otherLabel, value: restSum },

@@ -13,7 +13,7 @@ const generalSans = Manrope({
 export const metadata: Metadata = {
   title: "Heath — Modern underwriting business",
   description:
-    "Modern MGM underwriting business combining technical expertise, portfolio discipline, and technology-enabled execution.",
+    "Modern MGA underwriting business combining technical expertise, portfolio discipline, and technology-enabled execution.",
 };
 
 export default function RootLayout({
@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body className={`${generalSans.variable} font-sans min-h-screen`}>
         <LanguageProvider>
           <AppFrame>{children}</AppFrame>

@@ -27,6 +27,7 @@ export const en = {
     ariaLabel: "Select language",
     es: "ES",
     en: "EN",
+    zh: "中文",
   },
   dashboard: {
     meta: {
@@ -232,8 +233,8 @@ export const en = {
   },
   home: {
     hero: {
-      kicker: "Modern MGM",
-      title: "Heath is a partner-led underwriting platform operating as a modern MGM.",
+      kicker: "Modern MGA",
+      title: "Heath is a partner-led underwriting platform operating as a modern MGA.",
       subtitle:
         "We combine underwriting expertise, proprietary technology, and aligned capacity to deliver disciplined, risk-adjusted growth.",
       primaryCta: "Contact us",
@@ -305,7 +306,7 @@ export const en = {
   },
   footer: {
     description:
-      "Modern MGM focused on specialty underwriting, with technical discipline, portfolio governance, and technology-enabled execution.",
+      "Modern MGA focused on specialty underwriting, with technical discipline, portfolio governance, and technology-enabled execution.",
     contact: "Contact us",
     copyright: "© Heath. All rights reserved.",
   },

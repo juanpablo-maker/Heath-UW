@@ -32,7 +32,11 @@ export default function UnderwritingPage() {
       <section className="bg-background px-6 pb-16 md:px-10 md:pb-24">
         <div className="mx-auto flex max-w-5xl flex-wrap gap-3 rounded-2xl border border-border bg-backgroundSecondary p-6 md:items-center md:justify-between md:p-8">
           <p className="text-sm font-medium text-primary md:text-base">
-            {locale === "es" ? "¿Buscas un socio técnico de suscripción?" : "Looking for a technical underwriting partner?"}
+            {locale === "es"
+              ? "¿Buscas un socio técnico de suscripción?"
+              : locale === "zh"
+                ? "正在寻找技术型核保合作伙伴吗？"
+                : "Looking for a technical underwriting partner?"}
           </p>
           <div className="flex flex-wrap gap-3">
             <Link href="/contact" className="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white">

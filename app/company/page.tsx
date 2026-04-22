@@ -20,9 +20,21 @@ export default function CompanyPage() {
       <section className="bg-backgroundSecondary px-6 py-14 md:px-10 md:py-20">
         <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
           {[
-            locale === "es" ? "Gobernanza de suscripción" : "Underwriting governance",
-            locale === "es" ? "Alineación con capacidad" : "Capacity alignment",
-            locale === "es" ? "Compromiso de largo plazo" : "Long-term partnership commitment",
+            locale === "es"
+              ? "Gobernanza de suscripción"
+              : locale === "zh"
+                ? "核保治理"
+                : "Underwriting governance",
+            locale === "es"
+              ? "Alineación con capacidad"
+              : locale === "zh"
+                ? "承保能力协同"
+                : "Capacity alignment",
+            locale === "es"
+              ? "Compromiso de largo plazo"
+              : locale === "zh"
+                ? "长期合作承诺"
+                : "Long-term partnership commitment",
           ].map((item) => (
             <article key={item} className="rounded-2xl border border-border bg-background p-6 shadow-soft">
               <p className="text-sm leading-relaxed text-primary md:text-base">{item}</p>
@@ -33,7 +45,11 @@ export default function CompanyPage() {
       <section className="bg-background px-6 pb-16 md:px-10 md:pb-24">
         <div className="mx-auto flex max-w-5xl flex-wrap gap-3 rounded-2xl border border-border bg-backgroundSecondary p-6 md:items-center md:justify-between md:p-8">
           <p className="text-sm font-medium text-primary md:text-base">
-            {locale === "es" ? "Conozcamos oportunidades de colaboración institucional." : "Let's explore institutional collaboration opportunities."}
+            {locale === "es"
+              ? "Conozcamos oportunidades de colaboración institucional."
+              : locale === "zh"
+                ? "一起探索机构层面的合作机会。"
+                : "Let's explore institutional collaboration opportunities."}
           </p>
           <div className="flex flex-wrap gap-3">
             <Link href="/contact" className="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white">

@@ -27,6 +27,7 @@ export const es = {
     ariaLabel: "Seleccionar idioma",
     es: "ES",
     en: "EN",
+    zh: "中文",
   },
   dashboard: {
     meta: {
@@ -234,8 +235,8 @@ export const es = {
   },
   home: {
     hero: {
-      kicker: "MGM moderno",
-      title: "Heath es una plataforma de suscripción liderada por socios, operando como un MGM moderno.",
+      kicker: "MGA moderno",
+      title: "Heath es una plataforma de suscripción liderada por socios, operando como un MGA moderno.",
       subtitle:
         "Combinamos experiencia técnica de suscripción, tecnología propietaria y capacidad alineada para construir crecimiento disciplinado ajustado por riesgo.",
       primaryCta: "Contáctanos",
@@ -307,7 +308,7 @@ export const es = {
   },
   footer: {
     description:
-      "MGM moderno orientado a suscripción especializada, con disciplina técnica, enfoque de portafolio y ejecución habilitada por tecnología.",
+      "MGA moderno orientado a suscripción especializada, con disciplina técnica, enfoque de portafolio y ejecución habilitada por tecnología.",
     contact: "Contact us",
     copyright: "© Heath. Todos los derechos reservados.",
   },

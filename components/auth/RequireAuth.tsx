@@ -34,7 +34,11 @@ export function RequireAuth({ children }: RequireAuthProps) {
   if (status === "loading") {
     return (
       <div className="mx-auto max-w-6xl px-6 py-14 text-center text-secondary">
-        {locale === "es" ? "Cargando panel..." : "Loading dashboard..."}
+        {locale === "es"
+          ? "Cargando panel..."
+          : locale === "zh"
+            ? "正在加载仪表盘..."
+            : "Loading dashboard..."}
       </div>
     );
   }

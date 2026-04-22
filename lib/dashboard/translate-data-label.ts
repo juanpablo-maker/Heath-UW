@@ -1,5 +1,6 @@
 import type { Locale } from "@/lib/i18n";
 import { dashboardDataTranslationsEn } from "@/locales/dashboard-data-translations-en";
+import { dashboardDataTranslationsZh } from "@/locales/dashboard-data-translations-zh";
 
 function lookup(map: Record<string, string>, raw: string): string | undefined {
   if (raw in map) return map[raw];
@@ -8,13 +9,15 @@ function lookup(map: Record<string, string>, raw: string): string | undefined {
   return undefined;
 }
 
-/** When UI is EN, maps known Spanish DB strings to English; otherwise returns input. */
+/** Maps known Spanish DB strings to the selected UI locale; otherwise returns input. */
 export function translateDataLabel(
   text: string | null | undefined,
   locale: Locale
 ): string | null | undefined {
   if (text === null || text === undefined) return text;
-  if (locale !== "en") return text;
-  const mapped = lookup(dashboardDataTranslationsEn, text);
+  if (locale === "es") return text;
+  const dictionary =
+    locale === "zh" ? dashboardDataTranslationsZh : dashboardDataTranslationsEn;
+  const mapped = lookup(dictionary, text);
   return mapped ?? text;
 }

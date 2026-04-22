@@ -22,6 +22,8 @@ export default function TechnologyPage() {
           <h2 className="text-2xl font-semibold tracking-tight text-primary md:text-3xl">
             {locale === "es"
               ? "Nuestra plataforma propietaria habilita:"
+              : locale === "zh"
+                ? "我们的自研平台可实现："
               : "Our proprietary platform enables:"}
           </h2>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -36,7 +38,11 @@ export default function TechnologyPage() {
       <section className="bg-background px-6 pb-16 md:px-10 md:pb-24">
         <div className="mx-auto flex max-w-5xl flex-wrap gap-3 rounded-2xl border border-border bg-backgroundSecondary p-6 md:items-center md:justify-between md:p-8">
           <p className="text-sm font-medium text-primary md:text-base">
-            {locale === "es" ? "La tecnología en Heath potencia criterio técnico y control de riesgo." : "Technology at Heath amplifies underwriting judgment and risk control."}
+            {locale === "es"
+              ? "La tecnología en Heath potencia criterio técnico y control de riesgo."
+              : locale === "zh"
+                ? "Heath 的技术强化核保判断与风险控制。"
+                : "Technology at Heath amplifies underwriting judgment and risk control."}
           </p>
           <div className="flex flex-wrap gap-3">
             <a href="mailto:sales@heathuw.com" className="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white">

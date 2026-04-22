@@ -18,6 +18,8 @@
 
 body {
   @apply antialiased bg-background text-primary;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif;
+  line-height: 1.5;
 }
 
 /* Dashboard readability override: keep marketing dark, make data views clearer. */

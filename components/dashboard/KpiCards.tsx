@@ -17,7 +17,7 @@ function formatKpi(
   locale: string
 ): string {
   if (n === null || n === undefined || Number.isNaN(Number(n))) return "—";
-  const loc = locale === "en" ? "en-US" : "es";
+  const loc = locale === "en" ? "en-US" : locale === "zh" ? "zh-CN" : "es";
   return Number(n).toLocaleString(loc);
 }
 

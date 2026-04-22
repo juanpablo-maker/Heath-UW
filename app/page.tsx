@@ -8,6 +8,7 @@ import { FadeInSection } from "@/components/ui/FadeInSection";
 export default function Home() {
   const { dict } = useI18n();
   const copy = dict.home;
+  const titleParts = copy.hero.title.split("MGA");
 
   return (
     <>
@@ -21,10 +22,16 @@ export default function Home() {
                 {copy.hero.kicker}
               </span>
               <h1 className="mt-6 max-w-4xl text-[2.75rem] font-semibold leading-[1.04] tracking-tight text-primary md:text-7xl">
-                {copy.hero.title}{" "}
-                <span className="bg-gradient-to-r from-[#a78bfa] via-[#c084fc] to-[#fb923c] bg-clip-text text-transparent">
-                  MGM
-                </span>
+                {titleParts.map((part, idx) => (
+                  <span key={`${part}-${idx}`}>
+                    {part}
+                    {idx < titleParts.length - 1 ? (
+                      <span className="bg-gradient-to-r from-[#a78bfa] via-[#c084fc] to-[#fb923c] bg-clip-text text-transparent">
+                        MGA
+                      </span>
+                    ) : null}
+                  </span>
+                ))}
               </h1>
               <p className="mt-7 max-w-[58ch] text-base leading-relaxed text-secondary md:text-xl">
                 {copy.hero.subtitle}

@@ -1,10 +1,11 @@
 import { en } from "@/locales/en";
 import { es } from "@/locales/es";
+import { zh } from "@/locales/zh";
 
-export const locales = ["es", "en"] as const;
+export const locales = ["es", "en", "zh"] as const;
 export type Locale = (typeof locales)[number];
 
-export const messages = { es, en } as const;
+export const messages = { es, en, zh } as const;
 
 export function isLocale(value: string): value is Locale {
   return locales.includes(value as Locale);
@@ -16,7 +17,18 @@ export function getTranslation(locale: Locale, key: string): string {
 
   for (const part of parts) {
     if (!current || typeof current !== "object" || !(part in current)) {
-      return key;
+      current = messages.en;
+      for (const fallbackPart of parts) {
+        if (
+          !current ||
+          typeof current !== "object" ||
+          !(fallbackPart in current)
+        ) {
+          return key;
+        }
+        current = (current as Record<string, unknown>)[fallbackPart];
+      }
+      return typeof current === "string" ? current : key;
     }
     current = (current as Record<string, unknown>)[part];
   }

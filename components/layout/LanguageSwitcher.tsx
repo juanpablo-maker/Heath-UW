@@ -12,21 +12,25 @@ export function LanguageSwitcher() {
       role="group"
       aria-label={dict.languageSwitcher.ariaLabel}
     >
-      {(["es", "en"] as Locale[]).map((item) => {
+      {(["es", "en", "zh"] as Locale[]).map((item) => {
         const active = locale === item;
         return (
           <button
             key={item}
             type="button"
             onClick={() => setLocale(item)}
-            className={`rounded-full px-2.5 py-1 text-xs font-semibold tabular-nums transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent/50 ${
+            className={`rounded-full px-3 py-1 text-xs font-semibold tabular-nums leading-5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent/50 ${
               active
                 ? "bg-gradient-to-r from-[#6d28d9] to-[#f97316] text-white shadow-soft"
                 : "text-secondary hover:bg-backgroundSecondary hover:text-primary"
             }`}
             aria-pressed={active}
           >
-            {item === "es" ? dict.languageSwitcher.es : dict.languageSwitcher.en}
+            {item === "es"
+              ? dict.languageSwitcher.es
+              : item === "en"
+                ? dict.languageSwitcher.en
+                : dict.languageSwitcher.zh}
           </button>
         );
       })}

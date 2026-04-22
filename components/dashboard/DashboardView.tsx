@@ -165,7 +165,7 @@ function DashboardViewInner({
         kpisDisplay,
         chartDecline,
         ov.insightCopy,
-        locale === "es" ? "es-ES" : "en-US"
+        locale === "es" ? "es-ES" : locale === "zh" ? "zh-CN" : "en-US"
       ),
     [kpisDisplay, chartDecline, locale, ov.insightCopy]
   );

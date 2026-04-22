@@ -32,7 +32,11 @@ export default function PortfolioPage() {
       <section className="bg-background px-6 pb-16 md:px-10 md:pb-24">
         <div className="mx-auto flex max-w-5xl flex-wrap gap-3 rounded-2xl border border-border bg-backgroundSecondary p-6 md:items-center md:justify-between md:p-8">
           <p className="text-sm font-medium text-primary md:text-base">
-            {locale === "es" ? "Disciplina de cartera para crecimiento sostenible." : "Portfolio discipline for sustainable growth."}
+            {locale === "es"
+              ? "Disciplina de cartera para crecimiento sostenible."
+              : locale === "zh"
+                ? "以组合纪律实现可持续增长。"
+                : "Portfolio discipline for sustainable growth."}
           </p>
           <div className="flex flex-wrap gap-3">
             <Link href="/technology" className="rounded-full border border-border bg-background px-6 py-2.5 text-sm font-semibold text-primary">

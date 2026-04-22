@@ -16,7 +16,7 @@ type LanguageContextValue = {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("es");
+  const [locale, setLocaleState] = useState<Locale>("en");
 
   // Read storage before paint so the first passive effect (persist) does not run with "es"
   // and overwrite a saved "en" in localStorage.
@@ -32,6 +32,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const raw = match?.[1] ? decodeURIComponent(match[1].trim()) : "";
     if (raw && isLocale(raw)) {
       setLocaleState(raw);
+      return;
+    }
+    const browserLocale = navigator.language?.toLowerCase() ?? "";
+    if (browserLocale.startsWith("zh")) {
+      setLocaleState("zh");
     }
   }, []);
 

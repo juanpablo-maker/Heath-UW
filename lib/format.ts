@@ -1,4 +1,8 @@
-const localeTag = (locale: string) => (locale === "en" ? "en-US" : "es");
+const localeTag = (locale: string) => {
+  if (locale === "en") return "en-US";
+  if (locale === "zh") return "zh-CN";
+  return "es";
+};
 
 export function formatDateTime(
   iso: string | null | undefined,
