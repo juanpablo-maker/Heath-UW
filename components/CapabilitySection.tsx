@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useI18n } from "@/components/providers/LanguageProvider";
+import type { Locale } from "@/lib/i18n";
 import { SectionContainer } from "./ui/SectionContainer";
 
 export type MockPanelType = "intake" | "decision" | "portfolio";
@@ -71,32 +72,78 @@ export function CapabilitySection({
   );
 }
 
-function MockPanel({ type, locale }: { type: MockPanelType; locale: "es" | "en" }) {
+function MockPanel({ type, locale }: { type: MockPanelType; locale: Locale }) {
   if (type === "intake") return <MockIntakePanel locale={locale} />;
   if (type === "decision") return <MockDecisionPanel locale={locale} />;
   return <MockPortfolioPanel locale={locale} />;
 }
 
-function MockIntakePanel({ locale }: { locale: "es" | "en" }) {
+function MockIntakePanel({ locale }: { locale: Locale }) {
   return (
     <div className="group rounded-2xl border border-border bg-card p-4 shadow-soft ring-1 ring-primary/[0.03] transition-all duration-300 hover:shadow-card-lift md:p-5">
       <div className="mb-3 flex items-center gap-2">
         <span className="text-sm font-medium text-secondary">
-          {locale === "es" ? "Bandeja de entrada" : "Intake inbox"}
+          {locale === "es"
+            ? "Bandeja de entrada"
+            : locale === "zh"
+              ? "接收队列"
+              : "Intake inbox"}
         </span>
         <span className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-bold text-accent">
-          {locale === "es" ? "3 nuevos" : "3 new"}
+          {locale === "es"
+            ? "3 nuevos"
+            : locale === "zh"
+              ? "新增 3 条"
+              : "3 new"}
         </span>
       </div>
       <div className="space-y-2">
         {[
           {
             from: "Broker A",
-            subject: locale === "es" ? "Prop. marítimo — Ref. 8821" : "Marine property - Ref. 8821",
-            status: locale === "es" ? "Pendiente" : "Pending",
+            subject:
+              locale === "es"
+                ? "Prop. marítimo — Ref. 8821"
+                : locale === "zh"
+                  ? "海事财产提案 — 编号 8821"
+                  : "Marine property - Ref. 8821",
+            status:
+              locale === "es"
+                ? "Pendiente"
+                : locale === "zh"
+                  ? "待处理"
+                  : "Pending",
           },
-          { from: "Broker B", subject: locale === "es" ? "Renovación aviación" : "Aviation renewal", status: locale === "es" ? "En proceso" : "In progress" },
-          { from: "Broker C", subject: locale === "es" ? "Prop. inmuebles" : "Property submission", status: locale === "es" ? "Extraído" : "Extracted" },
+          {
+            from: "Broker B",
+            subject:
+              locale === "es"
+                ? "Renovación aviación"
+                : locale === "zh"
+                  ? "航空续保"
+                  : "Aviation renewal",
+            status:
+              locale === "es"
+                ? "En proceso"
+                : locale === "zh"
+                  ? "处理中"
+                  : "In progress",
+          },
+          {
+            from: "Broker C",
+            subject:
+              locale === "es"
+                ? "Prop. inmuebles"
+                : locale === "zh"
+                  ? "财产提交"
+                  : "Property submission",
+            status:
+              locale === "es"
+                ? "Extraído"
+                : locale === "zh"
+                  ? "已提取"
+                  : "Extracted",
+          },
         ].map((row, i) => (
           <div
             key={i}
@@ -118,11 +165,15 @@ function MockIntakePanel({ locale }: { locale: "es" | "en" }) {
   );
 }
 
-function MockDecisionPanel({ locale }: { locale: "es" | "en" }) {
+function MockDecisionPanel({ locale }: { locale: Locale }) {
   return (
     <div className="group rounded-2xl border border-border bg-card p-4 shadow-soft ring-1 ring-primary/[0.03] transition-all duration-300 hover:shadow-card-lift md:p-5">
       <div className="mb-4 text-sm font-medium text-secondary">
-        {locale === "es" ? "Oportunidad #8821" : "Opportunity #8821"}
+        {locale === "es"
+          ? "Oportunidad #8821"
+          : locale === "zh"
+            ? "机会 #8821"
+            : "Opportunity #8821"}
       </div>
       <div className="mb-4 flex h-28 items-end gap-2">
         {[40, 65, 55, 80, 70].map((h, i) => (
@@ -134,29 +185,75 @@ function MockDecisionPanel({ locale }: { locale: "es" | "en" }) {
         ))}
       </div>
       <div className="rounded-xl border border-intelligence/25 bg-intelligence/[0.06] p-3">
-        <p className="text-xs font-semibold text-intelligence">{locale === "es" ? "Recomendación (IA)" : "AI recommendation"}</p>
-        <p className="mt-1 text-base font-bold text-primary">{locale === "es" ? "Participar — 15%" : "Participate - 15%"}</p>
+        <p className="text-xs font-semibold text-intelligence">
+          {locale === "es"
+            ? "Recomendación (IA)"
+            : locale === "zh"
+              ? "AI 建议"
+              : "AI recommendation"}
+        </p>
+        <p className="mt-1 text-base font-bold text-primary">
+          {locale === "es"
+            ? "Participar — 15%"
+            : locale === "zh"
+              ? "建议参与 — 15%"
+              : "Participate - 15%"}
+        </p>
       </div>
       <div className="mt-3 flex justify-between text-xs text-secondary">
-        <span>{locale === "es" ? "Capacidad disponible" : "Available capacity"}</span>
+        <span>
+          {locale === "es"
+            ? "Capacidad disponible"
+            : locale === "zh"
+              ? "可用承保能力"
+              : "Available capacity"}
+        </span>
         <span className="font-medium text-primary">78%</span>
       </div>
     </div>
   );
 }
 
-function MockPortfolioPanel({ locale }: { locale: "es" | "en" }) {
+function MockPortfolioPanel({ locale }: { locale: Locale }) {
   return (
     <div className="group rounded-2xl border border-border bg-card p-4 shadow-soft ring-1 ring-primary/[0.03] transition-all duration-300 hover:shadow-card-lift md:p-5">
       <div className="mb-4 text-sm font-medium text-secondary">
-        {locale === "es" ? "KPIs del portafolio" : "Portfolio KPIs"}
+        {locale === "es"
+          ? "KPIs del portafolio"
+          : locale === "zh"
+            ? "组合 KPI"
+            : "Portfolio KPIs"}
       </div>
       <div className="grid grid-cols-2 gap-3">
         {[
-          { label: locale === "es" ? "Exposición total" : "Total exposure", value: "€ 42M" },
-          { label: locale === "es" ? "Concentración" : "Concentration", value: "12%" },
+          {
+            label:
+              locale === "es"
+                ? "Exposición total"
+                : locale === "zh"
+                  ? "总暴露"
+                  : "Total exposure",
+            value: "€ 42M",
+          },
+          {
+            label:
+              locale === "es"
+                ? "Concentración"
+                : locale === "zh"
+                  ? "集中度"
+                  : "Concentration",
+            value: "12%",
+          },
           { label: "Pipeline", value: "28" },
-          { label: locale === "es" ? "Declinaciones" : "Declines", value: "5" },
+          {
+            label:
+              locale === "es"
+                ? "Declinaciones"
+                : locale === "zh"
+                  ? "拒保数"
+                  : "Declines",
+            value: "5",
+          },
         ].map((k) => (
           <div
             key={k.label}
@@ -176,7 +273,13 @@ function MockPortfolioPanel({ locale }: { locale: "es" | "en" }) {
           />
         ))}
       </div>
-      <p className="mt-2 text-xs text-secondary">{locale === "es" ? "Pronóstico próximo trimestre" : "Next-quarter forecast"}</p>
+      <p className="mt-2 text-xs text-secondary">
+        {locale === "es"
+          ? "Pronóstico próximo trimestre"
+          : locale === "zh"
+            ? "下季度预测"
+            : "Next-quarter forecast"}
+      </p>
     </div>
   );
 }
